@@ -15,25 +15,55 @@ datasource db {
 }
 
 model User {
-  id        String      @id @default(uuid())
-  email     String   @unique
-  password  String
-  pet       Pet?
+  id         String      @id @default(uuid())
+  email      String   @unique
+  password   String
+  pet        Pet?
   lastActive DateTime @default(now())
-  createdAt DateTime @default(now())
+  createdAt  DateTime @default(now())
+
+  @@index([lastActive])
 }
 
 model Pet {
-  id        String   @id @default(uuid())
-  color     String
-  breed     String
-  hunger    Int      @default(100)
-  thirst    Int      @default(100)
-  cleanliness Int    @default(100)
-  fatigue   Int      @default(0)
-  health    Int      @default(100)
-  userId    String   @unique
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  color       String
+  breed       String
+  name        String
+  hunger      Float      @default(100) 
+  thirst      Float      @default(100)
+  cleanliness Float    @default(100)
+  fatigue     Float      @default(100)
+  health      Float      @default(100)
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  inventory   PetInventory?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PetInventory {
+  id       String          @id @default(uuid())
+  petId    String          @unique
+  pet      Pet             @relation(fields: [petId], references: [id])
+  items    InventoryItem[]
+}
+
+model Item {
+  id          String          @id @default(uuid())
+  name        String
+  stats       Json
+  experience  Float
+  inventories InventoryItem[]
+}
+model InventoryItem {
+  id              String         @id @default(uuid())
+  petInventoryId  String
+  itemId          String
+  quantity        Int            @default(1)
+  petInventory    PetInventory   @relation(fields: [petInventoryId], references: [id], onDelete: Cascade)
+  item            Item           @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  @@index([petInventoryId], map: "idx_petInventoryId")
+  @@index([itemId], map: "idx_itemId")
 }

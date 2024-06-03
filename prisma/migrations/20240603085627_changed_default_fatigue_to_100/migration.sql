@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Pet" ALTER COLUMN "fatigue" SET DEFAULT 100;

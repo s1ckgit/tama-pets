@@ -1,11 +1,13 @@
 'use server';
 
-import { type IRegisterCredentials } from "@/lib/types";
+import { signOut } from "@/auth";
+import { type RegisterCredentials } from "@/lib/types";
 import { db } from "@/lib/utils/db";
 import { hashPassword } from "@/lib/utils/hash-password";
+import { redirect } from "next/dist/client/components/redirect";
 
-export const signUp = async (data: IRegisterCredentials) => {
-  const { email, password, color, breed } = data;
+export const signUp = async (data: RegisterCredentials) => {
+  const { email, password, color, breed, name } = data;
 
   const hash = hashPassword(password);
   try {
@@ -20,13 +22,35 @@ export const signUp = async (data: IRegisterCredentials) => {
       data: {
         color,
         breed,
+        name,
         userId: newUser.id
       }
     });
-    console.log('succes', newUser, newPet);
+
+    const inventory = await db.petInventory.create({
+      data: {
+        pet: {
+          connect: { id: newPet.id }
+        }
+      }
+    });
+
+    console.log('succes', newUser, newPet, inventory);
   } catch(e) {
     console.log('чот наебнулось', e);
   }
+};
+
+export const logout = async () => {
+ try {
+    await signOut({ redirect: false });
+    console.log('succesfully signout');
+ } catch(e) {
+  console.error('error to signOut', e);
+ }
+ finally {
+  redirect('/');
+ }
 };
 
 export const updateLastActiveStatus = async (id: string) => {

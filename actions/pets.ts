@@ -1,3 +1,6 @@
+'use server';
+
+import { type Stats, type PetWithIndex } from "@/lib/types";
 import { db } from "@/lib/utils/db";
 
 export const updateActivePetsStatusByTime = async () => {
@@ -10,14 +13,28 @@ export const updateActivePetsStatusByTime = async () => {
     }
   });
 
-  for (const user of activeUsers) {
-    const pet = await db.pet.findFirst({
-      where: { userId: user.id }
-    });
+  const activeUsersIds = activeUsers.map((user) => user.id);
+  const pets = await db.pet.findMany({
+    where: {
+      userId: {
+        in: activeUsersIds
+      }
+    },
+    select: {
+      id: true,
+      thirst: true,
+      hunger: true,
+      cleanliness: true,
+    }
+  });
 
-    if (pet) {
+  const groupSize = 100;
+  for (let i = 0; i < pets.length; i += groupSize) {
+    const group = pets.slice(i, i + groupSize);
+
+    const updatePromises = group.map((pet) => {
       const { id, thirst, hunger, cleanliness } = pet;
-      await db.pet.update({
+      return db.pet.update({
         where: { id },
         data: {
           hunger: hunger - 0.1,
@@ -25,6 +42,29 @@ export const updateActivePetsStatusByTime = async () => {
           cleanliness: cleanliness - 0.1
         }
       });
-    }
+    });
+    await Promise.all(updatePromises);
   }
+
+  
+};
+
+export const changePetsStats = async (id: string, stats: Stats) => {
+  const pet: PetWithIndex = await db.pet.findFirst({
+    where: { id }
+  });
+
+  if (!pet) return;
+
+  const changedStats = {} as {[key: string]: number};
+
+  for(const key in stats) {
+    changedStats[key] = pet[key] as number + stats[key];
+  }
+
+  await db.pet.update({
+    where: { id },
+    data: changedStats
+  });
+
 };

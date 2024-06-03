@@ -10,7 +10,8 @@ export default function SignUp() {
         const password = formData.get('password') as string;
         const breed = formData.get('breed') as string;
         const color = formData.get('color') as string;
-        await signUp({ email, password, breed, color });
+        const name = formData.get('name') as string;
+        await signUp({ email, password, breed, color, name });
       }}
     >
       <label>
@@ -28,6 +29,10 @@ export default function SignUp() {
       <label>
         color
         <input name="color" type="text" />
+      </label>
+      <label>
+        Name
+        <input name="name" type="text" />
       </label>
       <button>Sign In</button>
     </form>
