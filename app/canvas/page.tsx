@@ -7,7 +7,7 @@ import * as Pixi from 'pixi.js';
 import { changeBreed, changeColor, getRandomHexColor, getRandomBreed } from "@/lib/redux/pet-constructor-slice";
 import { type AppDispatch } from "@/lib/redux/store";
 import { assetsMap } from "@/public/assets/assetsMap";
-import { usePetConstructor } from "@/lib/utils/use-pet-constructor";
+import { usePetConstructor } from "@/lib/hooks/use-pet-constructor";
 
 const Canvas = () => {
   const [appIsStarted, setAppIsStarted] = useState(false);

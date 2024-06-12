@@ -4,8 +4,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SessionProvider } from "next-auth/react";
 import StateProvider from "@/components/state-provider";
+import { cn } from "@/lib/utils/cn";
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = Inter({ subsets: ["latin"], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn('font-sans', fontSans.variable)}>
       <SessionProvider>
         <StateProvider>
           {children}
