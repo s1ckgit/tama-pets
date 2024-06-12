@@ -5,8 +5,8 @@ export interface Credentials {
   password: string;
 }
 
-interface PetCharacteristics {
-  breed: string;
+export interface PetCharacteristics {
+  breed: 'cat' | 'dog' | 'sheep';
   color: string;
   name: string;
 }

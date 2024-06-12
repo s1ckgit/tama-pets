@@ -1,7 +1,29 @@
 'use server';
 
-import { type Stats, type PetWithIndex } from "@/lib/types";
+import { type Stats, type PetWithIndex, type PetCharacteristics } from "@/lib/types";
 import { db } from "@/lib/utils/db";
+
+export const fetchPet = async (userId: string) => {
+  const pet = await db.pet.findUnique({
+    where: { userId }
+  });
+  const createdAt = pet?.createdAt.toISOString();
+  const updatedAt = pet?.updatedAt.toISOString();
+  return {
+    ...pet,
+    createdAt,
+    updatedAt
+  } as PetWithIndex;
+};
+
+export const updatePet = async (petData: Partial<PetCharacteristics>, userId: string) => {
+  const updatedPet = await db.pet.update({
+    where: { userId },
+    data: petData
+  });
+
+  return updatedPet;
+};
 
 export const updateActivePetsStatusByTime = async () => {
   const activeThreshold = new Date(Date.now() - 60 * 60 * 1000);
