@@ -4,10 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as Pixi from 'pixi.js';
 
-import { changeBreed, changeColor, getRandomHexColor, getRandomBreed } from "@/lib/redux/pet-constructor-slice";
+import { changeVision } from "@/lib/redux/pet-constructor-slice";
 import { type AppDispatch } from "@/lib/redux/store";
-import { assetsMap } from "@/public/assets/assetsMap";
 import { usePetConstructor } from "@/lib/hooks/use-pet-constructor";
+import manifest from '@/manifest.json';
+import { BabyCatHeadEnum } from "@/lib/assets-info";
 
 const Canvas = () => {
   const [appIsStarted, setAppIsStarted] = useState(false);
@@ -19,13 +20,16 @@ const Canvas = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  const { drawPet, removePet, petContainer } = usePetConstructor();
+  const { drawPet, removePet, petContainer, petProps } = usePetConstructor();
 
   useEffect(() => {
     const initApp = async () => {
       const app = new Pixi.Application();
       try {
-        await app.init({ backgroundColor: 0x2e2e2e });
+        await app.init({ backgroundColor: 0xf2f2f2 });
+        Pixi.Assets.init({ manifest });
+        Pixi.Assets.backgroundLoadBundle('baby-cat');
+
         canvasRef.current?.appendChild(app.canvas);
         appRef.current = app;
         middleXCoords.current = appRef.current.screen.width / 2;
@@ -33,8 +37,6 @@ const Canvas = () => {
 
         setAppIsStarted(true);
 
-        Pixi.Assets.addBundle('breed', assetsMap.sptites.breedBundle);
-        Pixi.Assets.backgroundLoadBundle('breed');
 
       } catch(e) {
         console.error(e);
@@ -52,9 +54,7 @@ const Canvas = () => {
 
   useEffect(() => {
     if(appIsStarted) {
-      drawPet();
-      petContainer.x = middleXCoords.current;
-      petContainer.y = middleYCoords.current;
+      drawPet(middleXCoords.current, middleYCoords.current);
       appRef.current?.stage.addChild(petContainer);
       
       return () => {
@@ -67,8 +67,19 @@ const Canvas = () => {
   return (
     <>
       <div ref={canvasRef}></div>
-      <button onClick={() => dispatch(changeColor(getRandomHexColor()))}>Сменить цвет</button>
-      <button onClick={() => dispatch(changeBreed(getRandomBreed()))}>Сменить расу</button>
+      <button onClick={() => {
+        const headValue = petProps.head.value;
+        let newValue;
+        if (headValue === 4) {
+          newValue = 1;
+        } else {
+          newValue = headValue + 1;
+        }
+
+        const newHead = BabyCatHeadEnum[newValue];
+
+        dispatch(changeVision(newHead));
+      }}>Сменить башку</button>
     </>
   );
 };

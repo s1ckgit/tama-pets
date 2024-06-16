@@ -1,0 +1,97 @@
+{
+  "bundles": [
+    {
+      "name": "baby-cat",
+      "assets": [
+        {
+          "alias": "tail-pattern-1-mask",
+          "src": "/assets/baby-cat/tail-patterns/pattern-1-mask.svg"
+        },
+        {
+          "alias": "tail-pattern-1",
+          "src": "/assets/baby-cat/tail-patterns/pattern-1.svg"
+        },
+        {
+          "alias": "baby-cat-base-1",
+          "src": "/assets/baby-cat/baby-cat-base-1.svg"
+        },
+        {
+          "alias": "baby-cat-brows-1",
+          "src": "/assets/baby-cat/baby-cat-brows-1.svg"
+        },
+        {
+          "alias": "baby-cat-brows-2",
+          "src": "/assets/baby-cat/baby-cat-brows-2.svg"
+        },
+        {
+          "alias": "baby-cat-brows-3",
+          "src": "/assets/baby-cat/baby-cat-brows-3.svg"
+        },
+        {
+          "alias": "baby-cat-ears-1",
+          "src": "/assets/baby-cat/baby-cat-ears-1.svg"
+        },
+        {
+          "alias": "baby-cat-ears-2",
+          "src": "/assets/baby-cat/baby-cat-ears-2.svg"
+        },
+        {
+          "alias": "baby-cat-ears-3",
+          "src": "/assets/baby-cat/baby-cat-ears-3.svg"
+        },
+        {
+          "alias": "baby-cat-head-1",
+          "src": "/assets/baby-cat/baby-cat-head-1.svg"
+        },
+        {
+          "alias": "baby-cat-head-2",
+          "src": "/assets/baby-cat/baby-cat-head-2.svg"
+        },
+        {
+          "alias": "baby-cat-head-3",
+          "src": "/assets/baby-cat/baby-cat-head-3.svg"
+        },
+        {
+          "alias": "baby-cat-head-4",
+          "src": "/assets/baby-cat/baby-cat-head-4.svg"
+        },
+        {
+          "alias": "baby-cat-head-5",
+          "src": "/assets/baby-cat/baby-cat-head-5.svg"
+        },
+        {
+          "alias": "baby-cat-head-6",
+          "src": "/assets/baby-cat/baby-cat-head-6.svg"
+        },
+        {
+          "alias": "baby-cat-tail-1",
+          "src": "/assets/baby-cat/baby-cat-tail-1.svg"
+        },
+        {
+          "alias": "baby-cat-tail-2",
+          "src": "/assets/baby-cat/baby-cat-tail-2.svg"
+        },
+        {
+          "alias": "baby-cat-tail-3",
+          "src": "/assets/baby-cat/baby-cat-tail-3.svg"
+        },
+        {
+          "alias": "baby-cat-tail-4",
+          "src": "/assets/baby-cat/baby-cat-tail-4.svg"
+        },
+        {
+          "alias": "baby-cat-whiskers-1",
+          "src": "/assets/baby-cat/baby-cat-whiskers-1.svg"
+        },
+        {
+          "alias": "baby-cat-whiskers-2",
+          "src": "/assets/baby-cat/baby-cat-whiskers-2.svg"
+        },
+        {
+          "alias": "baby-cat-whiskers-3",
+          "src": "/assets/baby-cat/baby-cat-whiskers-3.svg"
+        }
+      ]
+    }
+  ]
+}

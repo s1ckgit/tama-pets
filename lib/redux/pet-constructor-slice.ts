@@ -1,4 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import type { ChangePatternsPayload, ChangeVisionPayload, PetCharacteristics, PetConstructorState } from "@/lib/types";
+import { BabyCatHeadEnum } from "@/lib/assets-info";
 
 export const getRandomBreed = () => {
   const breeds = ['cat', 'dog', 'sheep'];
@@ -16,19 +18,91 @@ export function getRandomHexColor() {
 const petConstructorSlice = createSlice({
   name: 'pet-constructor',
   initialState: {
-    color: getRandomHexColor(),
-    breed: getRandomBreed()
-  },
-  reducers: {
-    changeColor(state, action: PayloadAction<number>) {
-      state.color = action.payload;
+    body: 'cat',
+    brows: {
+      value: 1,
+      size : {
+        width: 60,
+        height: 21
+      },
+      position: {
+        x: 0,
+        y: 0
+      }
     },
-    changeBreed(state, action: PayloadAction<string>) {
-      state.breed = action.payload;
+    ears: {
+      value: 1,
+      size: {
+        width: 159,
+        height: 92
+      },
+      position: {
+        x: 0,
+        y: 0
+      }
+    },
+    head: BabyCatHeadEnum['1'],
+    tail: {
+      value: 1,
+      size: {
+        width: 144,
+        height: 171
+      },
+      position: {
+        x: 0,
+        y: 0
+      }
+    },
+    whiskers: {
+      value: 1,
+      size: {
+        width: 271,
+        height: 103
+      },
+      position: {
+        x: 0,
+        y: 0
+      },
+    },
+    patterns: [
+      {
+        part: 'tail',
+        value: 1,
+        size: {
+          width: 106,
+          height: 116
+        },
+        position: {
+          x: 21, 
+          y: -27
+        },
+        id: 1
+      }
+    ]
+  } as PetConstructorState,
+  reducers: {
+    changeBreed(state, action: PayloadAction<PetCharacteristics['breed']>) {
+      state.body = action.payload;
+    },
+    changeVision(state, action: PayloadAction<ChangeVisionPayload>) {
+      const part = action.payload.part;
+        state[part] = {
+          value: action.payload.value,
+          size: action.payload.size,
+          position: action.payload.position
+        };
+    },
+    changePatterns(state, action: PayloadAction<ChangePatternsPayload>) {
+      if(action.payload.delete) {
+        state.patterns = state.patterns.filter((item) => item.id !== action.payload.pattern.id);
+      } 
+      else {
+        state.patterns.push(action.payload.pattern);
+      } 
     }
   }
 });
 
 export default petConstructorSlice.reducer;
 
-export const { changeColor, changeBreed } = petConstructorSlice.actions;
+export const { changeBreed, changeVision } = petConstructorSlice.actions;

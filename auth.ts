@@ -5,7 +5,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import { compareSync } from 'bcryptjs';
 
 import { db } from "@/lib/utils/db";
-import { type ICredentials } from "@/lib/types";
+import { type Credentials as CredentialsType } from "@/lib/types";
  
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(db),
@@ -16,7 +16,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: {}
       },
       authorize: async (credentials) => {
-        const { email, password } = credentials as ICredentials;
+        const { email, password } = credentials as CredentialsType;
 
         const user = await db.user.findUnique({
           where: { email }

@@ -27,3 +27,37 @@ export interface Item {
   stats: Stats;
   experience: number;
 }
+
+interface PetConstructorProp {
+  value: number;
+  size: {
+    width: number,
+    height: number
+  };
+  position: {
+    x: number,
+    y: number
+  }
+}
+export interface PetConstructorState {
+  body: PetCharacteristics['breed'];
+  brows: PetConstructorProp;
+  ears: PetConstructorProp;
+  head: PetConstructorProp;
+  tail: PetConstructorProp;
+  whiskers: PetConstructorProp;
+  patterns: PatternsPayload[]
+}
+
+export interface ChangeVisionPayload extends PetConstructorProp {
+  part: Exclude<keyof PetConstructorState, 'patterns' | 'body'>;
+}
+
+export interface PatternsPayload extends ChangeVisionPayload {
+  id: number
+}
+
+export interface ChangePatternsPayload {
+  pattern: PatternsPayload;
+  delete?: boolean
+}
