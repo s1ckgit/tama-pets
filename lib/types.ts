@@ -29,6 +29,7 @@ export interface Item {
 }
 
 interface PetConstructorProp {
+  breed?: PetCharacteristics['breed'];
   value: number;
   size: {
     width: number,
@@ -40,13 +41,14 @@ interface PetConstructorProp {
   }
 }
 export interface PetConstructorState {
-  body: PetCharacteristics['breed'];
+  body: PetConstructorProp;
   brows: PetConstructorProp;
   ears: PetConstructorProp;
   head: PetConstructorProp;
   tail: PetConstructorProp;
   whiskers: PetConstructorProp;
-  patterns: PatternsPayload[]
+  patterns: PatternsPayload[];
+  [key: string]: PetConstructorProp | PatternsPayload[];
 }
 
 export interface ChangeVisionPayload extends PetConstructorProp {
@@ -54,7 +56,8 @@ export interface ChangeVisionPayload extends PetConstructorProp {
 }
 
 export interface PatternsPayload extends ChangeVisionPayload {
-  id: number
+  id: number;
+  color: string;
 }
 
 export interface ChangePatternsPayload {

@@ -9,7 +9,7 @@
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react"],
-  "ignorePatterns": ["components/ui/**.*"],
+  "ignorePatterns": ["components/ui/**.*"],	
   "rules": {
     "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
     "@typescript-eslint/semi": ["error", "always"],

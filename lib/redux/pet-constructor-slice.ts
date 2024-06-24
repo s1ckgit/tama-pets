@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { ChangePatternsPayload, ChangeVisionPayload, PetCharacteristics, PetConstructorState } from "@/lib/types";
+import type { ChangePatternsPayload, ChangeVisionPayload, PetConstructorState } from "@/lib/types";
 import { BabyCatHeadEnum } from "@/lib/assets-info";
 
 export const getRandomBreed = () => {
@@ -18,7 +18,18 @@ export function getRandomHexColor() {
 const petConstructorSlice = createSlice({
   name: 'pet-constructor',
   initialState: {
-    body: 'cat',
+    body: {
+      breed: 'cat',
+      value: 1,
+      size: {
+        width: 252,
+        height: 329
+      },
+      position: {
+        x: 0,
+        y: 0
+      }
+    },
     brows: {
       value: 1,
       size : {
@@ -69,19 +80,20 @@ const petConstructorSlice = createSlice({
         part: 'tail',
         value: 1,
         size: {
-          width: 106,
+          width: 100,
           height: 116
         },
         position: {
-          x: 21, 
+          x: 21.5, 
           y: -27
         },
-        id: 1
+        id: 1,
+        color: '#000000'
       }
     ]
   } as PetConstructorState,
   reducers: {
-    changeBreed(state, action: PayloadAction<PetCharacteristics['breed']>) {
+    changeBreed(state, action: PayloadAction<ChangeVisionPayload>) {
       state.body = action.payload;
     },
     changeVision(state, action: PayloadAction<ChangeVisionPayload>) {
