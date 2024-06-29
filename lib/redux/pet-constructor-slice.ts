@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { ChangePatternsPayload, ChangeVisionPayload, PetConstructorState } from "@/lib/types";
-import { BabyCatHeadEnum } from "@/lib/assets-info";
+import type { ChangeBodyPayload, ChangePatternsPayload, ChangeVisionPayload, PetConstructorState } from "@/lib/types";
+import { BabyCatBrowsEnum, BabyCatHeadEnum } from "@/lib/assets-info";
 
 export const getRandomBreed = () => {
   const breeds = ['cat', 'dog', 'sheep'];
@@ -13,87 +13,79 @@ export function getRandomHexColor() {
   return +`0x${hex.padStart(6, '0')}`;
 }
 
+const initialState = {
+  body: {
+    breed: 'cat',
+    value: 1,
+    size: {
+      width: 252,
+      height: 329
+    },
+    position: {
+      x: 0,
+      y: 0
+    }
+  },
+  brows: BabyCatBrowsEnum[0],
+  ears: {
+    value: 1,
+    size: {
+      width: 160,
+      height: 93
+    },
+    position: {
+      x: -51,
+      y: -87
+    }
+  },
+  head: BabyCatHeadEnum[0],
+  tail: {
+    value: 1,
+    size: {
+      width: 145,
+      height: 173
+    },
+    position: {
+      x: 161,
+      y: 80
+    }
+  },
+  whiskers: {
+    value: 1,
+    size: {
+      width: 272,
+      height: 104
+    },
+    position: {
+      x: -40,
+      y: -60
+    },
+  },
+  patterns: [
+    {
+      part: 'tail',
+      value: 1,
+      size: {
+        width: 100,
+        height: 116
+      },
+      position: {
+        x: 21.5, 
+        y: -27
+      },
+      id: 1,
+      color: '#000000'
+    }
+  ]
+} as PetConstructorState;
+
 
 
 const petConstructorSlice = createSlice({
   name: 'pet-constructor',
-  initialState: {
-    body: {
-      breed: 'cat',
-      value: 1,
-      size: {
-        width: 252,
-        height: 329
-      },
-      position: {
-        x: 0,
-        y: 0
-      }
-    },
-    brows: {
-      value: 1,
-      size : {
-        width: 60,
-        height: 21
-      },
-      position: {
-        x: 0,
-        y: 0
-      }
-    },
-    ears: {
-      value: 1,
-      size: {
-        width: 159,
-        height: 92
-      },
-      position: {
-        x: 0,
-        y: 0
-      }
-    },
-    head: BabyCatHeadEnum['1'],
-    tail: {
-      value: 1,
-      size: {
-        width: 144,
-        height: 171
-      },
-      position: {
-        x: 0,
-        y: 0
-      }
-    },
-    whiskers: {
-      value: 1,
-      size: {
-        width: 271,
-        height: 103
-      },
-      position: {
-        x: 0,
-        y: 0
-      },
-    },
-    patterns: [
-      {
-        part: 'tail',
-        value: 1,
-        size: {
-          width: 100,
-          height: 116
-        },
-        position: {
-          x: 21.5, 
-          y: -27
-        },
-        id: 1,
-        color: '#000000'
-      }
-    ]
-  } as PetConstructorState,
+  initialState,
   reducers: {
-    changeBreed(state, action: PayloadAction<ChangeVisionPayload>) {
+    changeBreed(state, action: PayloadAction<ChangeBodyPayload>) {
       state.body = action.payload;
     },
     changeVision(state, action: PayloadAction<ChangeVisionPayload>) {
@@ -101,7 +93,10 @@ const petConstructorSlice = createSlice({
         state[part] = {
           value: action.payload.value,
           size: action.payload.size,
-          position: action.payload.position
+          position: action.payload.position,
+          id: action.payload.id,
+          name: action.payload.name,
+          part: action.payload.part
         };
     },
     changePatterns(state, action: PayloadAction<ChangePatternsPayload>) {

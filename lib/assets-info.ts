@@ -1,12 +1,57 @@
-import { ChangeVisionPayload } from "./types";
+import { type PartsData } from './types';
 
-type BabyCatHeadEnumType = {
-  [key: string]: ChangeVisionPayload;
-};
+type PartsEnumType = PartsData[];
 
-export const BabyCatHeadEnum: BabyCatHeadEnumType = {
-  '1': {
+export const BabyCatBrowsEnum: PartsEnumType = [
+  {
+    part: 'brows',
+    name: 'брови-3',
+    id: 31,
+    value: 3,
+    size: {
+      width: 57,
+      height: 25
+    },
+    position: {
+      x: -41,
+      y: -55
+    }
+  },
+  {
+    part: 'brows',
+    name: 'брови-2',
+    id: 21,
+    value: 2,
+    size: {
+      width: 50,
+      height: 28
+    },
+    position: {
+      x: -41,
+      y: -53
+    }
+  },
+  {
+    part: 'brows',
+    name: 'брови-1',
+    id: 11,
+    value: 1,
+    size: {
+      width: 61,
+      height: 22
+    },
+    position: {
+      x: -41,
+      y: -49
+    }
+  }
+];
+
+export const BabyCatHeadEnum: PartsEnumType = [
+  {
     part: 'head',
+    name: 'голова-1',
+    id: 12,
     value: 1,
     size: {
       width: 74,
@@ -17,8 +62,10 @@ export const BabyCatHeadEnum: BabyCatHeadEnumType = {
       y: -157
     }
   },
-  '2': {
+  {
     part: 'head',
+    name: 'голова-2',
+    id: 22,
     value: 2,
     size: {
       width: 69,
@@ -29,8 +76,10 @@ export const BabyCatHeadEnum: BabyCatHeadEnumType = {
       y: -161
     }
   },
-  '3': {
+  {
     part: 'head',
+    name: 'голова-3',
+    id: 32,
     value: 3,
     size: {
       width: 35,
@@ -41,16 +90,18 @@ export const BabyCatHeadEnum: BabyCatHeadEnumType = {
       y: -147
     }
   },
-  '4': {
+  {
     part: 'head',
+    name: 'голова-4',
+    id: 42,
     value: 4,
     size: {
-      width: 49,
-      height: 47
+      width: 50,
+      height: 48
     },
     position: {
-      x: -60,
-      y: -168
+      x: -61,
+      y: -169
     }
   }
-};
+];

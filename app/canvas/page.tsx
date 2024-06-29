@@ -1,20 +1,16 @@
 'use client';
 
 import { useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
 import * as Pixi from 'pixi.js';
 import { HexColorPicker } from "react-colorful";
 
-import { changeVision } from "@/lib/redux/pet-constructor-slice";
-import { type AppDispatch } from "@/lib/redux/store";
 import { usePetConstructor } from "@/lib/hooks/use-pet-constructor";
 import manifest from '@/manifest.json';
-import { BabyCatHeadEnum } from "@/lib/assets-info";
 
-import styles from './canvas.module.css';
+import { BabyCatBrowsEnum, BabyCatHeadEnum } from "@/lib/assets-info";
+import PetPart from "@/components/pet-part";
+import HistoryPetPart from "@/components/history-pet-part";
 
-import CAT from '@/public/cat.svg';
-import PATTERN from '@/public/assets/baby-cat/tail-patterns/pattern-1-mask.svg';
 
 const Canvas = () => {
   const [appIsStarted, setAppIsStarted] = useState(false);
@@ -25,15 +21,13 @@ const Canvas = () => {
   const middleXCoords = useRef<number>(0);
   const middleYCoords = useRef<number>(0);
 
-  const dispatch = useDispatch<AppDispatch>();
-
   const { drawPet, removePet, petContainer } = usePetConstructor();
 
   useEffect(() => {
     const initApp = async () => {
       const app = new Pixi.Application();
       try {
-        await app.init({ backgroundColor: 0xf2f2f2, width: 480, height: 640 });
+        await app.init({ backgroundColor: 0xffffff, width: 480, height: 640 });
         Pixi.Assets.init({ manifest });
         Pixi.Assets.backgroundLoadBundle('baby-cat');
 
@@ -72,22 +66,26 @@ const Canvas = () => {
   }, [appIsStarted, drawPet, petContainer, removePet]);
 
   return (
-    <div className={styles.grid}>
-      <div className={styles['subgrid-1']}>
-        <div className={styles.colors}>
+    <div className='grid [grid-template-columns:repeat(3,1fr)] [grid-template-areas:"subgrid-1_subgrid-2_subgrid-3"] gap-3 p-3'>
+      <div className='grid [grid-template-rows:300px_auto] [grid-template-areas:"colors""forms"] [grid-area: subgrid-1] gap-3'>
+        <div className='tama-container grid-area: colors'>
           <HexColorPicker color={color} onChange={setColor} style={{ width: '50%', height: '100%' }}/>
-          <div className={styles['color-story']}></div>
+          <div className=''></div>
         </div>
-        <div>
+        <div className="tama-container [grid-area: forms] flex flex-col">
+          {BabyCatBrowsEnum.map((item) => <PetPart variant="default" data={item} key={item.name}/>)}
+          {BabyCatHeadEnum.map((item) => <PetPart variant="default" data={item} key={item.name}/>)}
         </div>
       </div>
-      <div className={styles['subgrid-2']}>
-        <div>story</div>
-        <div className={styles.game} ref={canvasRef}></div>
+      <div className='grid [grid-template-rows:100px_auto] [grid-template-areas:"story""game"] [grid-area: subgrid-2] gap-3'>
+        <div className="tama-container [grid-area: story]">
+          <HistoryPetPart />
+        </div>
+        <div className='tama-container [grid-area: game]' ref={canvasRef}></div>
       </div>
-      <div className={styles['subgrid-3']}>
-        <div>patterns</div>
-        <div>hujnya kakaya-to</div>
+      <div className='grid [grid-template-rows:300px_auto] [grid-template-areas:"paterns""hzpoka"] [grid-area: subgrid-3] gap-3'>
+        <div className="tama-container [grid-area: patterns]"></div>
+        <div className="tama-container [grid-area: hzpoka]"></div>
       </div>
 
       

@@ -1,12 +1,11 @@
-import { useSelector } from "react-redux";
 import { useCallback, useMemo } from "react";
 
 import { Graphics, Assets, Container, Texture, Sprite } from 'pixi.js';
 
-import { type RootState } from "@/lib/redux/store";
+import { useAppSelector } from "@/lib/hooks/store-hooks";
 
 export const usePetConstructor = () => {
-  const petProps = useSelector((state: RootState) => state.petConstructor);
+  const petProps = useAppSelector((state) => state.petConstructor);
 
   const petContainer = useMemo(() => {
     const container = new Container();

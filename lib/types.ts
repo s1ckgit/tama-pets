@@ -5,13 +5,7 @@ export interface Credentials {
   password: string;
 }
 
-export interface PetCharacteristics {
-  breed: 'cat' | 'dog' | 'sheep';
-  color: string;
-  name: string;
-}
-
-export interface RegisterCredentials extends Credentials, PetCharacteristics {}
+type BreedType = 'cat' | 'dog' | 'sheep';
 
 type PetValuesTypes = Pet[keyof Pet];
 
@@ -29,8 +23,10 @@ export interface Item {
 }
 
 interface PetConstructorProp {
-  breed?: PetCharacteristics['breed'];
   value: number;
+  name?: string;
+  part?: string;
+  id?: number;
   size: {
     width: number,
     height: number
@@ -40,8 +36,10 @@ interface PetConstructorProp {
     y: number
   }
 }
+
+type BodyPropType = PetConstructorProp & { breed: BreedType };
 export interface PetConstructorState {
-  body: PetConstructorProp;
+  body: BodyPropType;
   brows: PetConstructorProp;
   ears: PetConstructorProp;
   head: PetConstructorProp;
@@ -51,11 +49,21 @@ export interface PetConstructorState {
   [key: string]: PetConstructorProp | PatternsPayload[];
 }
 
-export interface ChangeVisionPayload extends PetConstructorProp {
-  part: Exclude<keyof PetConstructorState, 'patterns' | 'body'>;
+type PartType = 'brows' | 'ears' | 'head' | 'tail' | 'whiskers';
+
+export interface ChangeBodyPayload extends PetConstructorProp {
+  breed: BreedType
 }
 
-export interface PatternsPayload extends ChangeVisionPayload {
+export interface PartsData extends PetConstructorProp {
+  name: string;
+  part: PartType;
+}
+
+export type ChangeVisionPayload = PartsData;
+
+export interface PatternsPayload extends PetConstructorProp {
+  part: PartType;
   id: number;
   color: string;
 }
@@ -64,3 +72,7 @@ export interface ChangePatternsPayload {
   pattern: PatternsPayload;
   delete?: boolean
 }
+export interface HistoryState {
+  history: PartsData[];
+}
+
