@@ -1,6 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { ChangeBodyPayload, ChangePatternsPayload, ChangeVisionPayload, PetConstructorState } from "@/lib/types";
-import { BabyCatBrowsEnum, BabyCatHeadEnum } from "@/lib/assets-info";
+import type { ChangeBodyPayload, ChangePartColorPayload, ChangePatternColorPayload, ChangePatternsPayload, ChangeVisionPayload, PetConstructorState } from "@/lib/types";
+import { BabyCatBrowsEnum, BabyCatEarsEnum, BabyCatHeadEnum, BabyCatTailsEnum, BabyCatWhiskersEnum } from "@/lib/assets-info";
+
+import { enableMapSet } from 'immer';
+
+enableMapSet();
 
 export const getRandomBreed = () => {
   const breeds = ['cat', 'dog', 'sheep'];
@@ -16,67 +20,26 @@ export function getRandomHexColor() {
 const initialState = {
   body: {
     breed: 'cat',
+    color: '#808080',
+    part: 'body',
+    name: 'тело-1',
     value: 1,
     size: {
       width: 252,
       height: 329
     },
     position: {
-      x: 0,
-      y: 0
-    }
+      x: 240,
+      y: 320
+    },
+    id: 452426,
+    patterns: new Map([])
   },
   brows: BabyCatBrowsEnum[0],
-  ears: {
-    value: 1,
-    size: {
-      width: 160,
-      height: 93
-    },
-    position: {
-      x: -51,
-      y: -87
-    }
-  },
+  ears: BabyCatEarsEnum[0],
   head: BabyCatHeadEnum[0],
-  tail: {
-    value: 1,
-    size: {
-      width: 145,
-      height: 173
-    },
-    position: {
-      x: 161,
-      y: 80
-    }
-  },
-  whiskers: {
-    value: 1,
-    size: {
-      width: 272,
-      height: 104
-    },
-    position: {
-      x: -40,
-      y: -60
-    },
-  },
-  patterns: [
-    {
-      part: 'tail',
-      value: 1,
-      size: {
-        width: 100,
-        height: 116
-      },
-      position: {
-        x: 21.5, 
-        y: -27
-      },
-      id: 1,
-      color: '#000000'
-    }
-  ]
+  tail: BabyCatTailsEnum[0],
+  whiskers: BabyCatWhiskersEnum[0],
 } as PetConstructorState;
 
 
@@ -96,20 +59,40 @@ const petConstructorSlice = createSlice({
           position: action.payload.position,
           id: action.payload.id,
           name: action.payload.name,
-          part: action.payload.part
+          part: action.payload.part,
+          color: action.payload.color,
+          patterns: new Map([])
         };
     },
+    changePartColor(state, action: PayloadAction<ChangePartColorPayload>) {
+      const part = action.payload.part;
+      if(state[part].color) {
+        state[part].color = action.payload.color;
+      }
+    },
     changePatterns(state, action: PayloadAction<ChangePatternsPayload>) {
-      if(action.payload.delete) {
-        state.patterns = state.patterns.filter((item) => item.id !== action.payload.pattern.id);
-      } 
+      const pattern = action.payload.pattern;
+      const part = pattern.part;
+      const patterns = state[part].patterns;
+      const toDelete = patterns.has(pattern.id);
+      if(toDelete) {
+        patterns.delete(pattern.id);
+      }
       else {
-        state.patterns.push(action.payload.pattern);
-      } 
+        patterns.set(pattern.id, pattern);
+      }
+    },
+    changePatternColor(state, action: PayloadAction<ChangePatternColorPayload>) {
+      const { color, part, patternID: id } = action.payload;
+      const pattern = state[part].patterns.get(id);
+      if(pattern) {
+        pattern.color = color;
+      }
     }
+
   }
 });
 
 export default petConstructorSlice.reducer;
 
-export const { changeBreed, changeVision } = petConstructorSlice.actions;
+export const { changeBreed, changeVision, changePatternColor, changePartColor, changePatterns } = petConstructorSlice.actions;

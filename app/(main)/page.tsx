@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils/cn";
 
-import MAINCAT from '@/public/pets/main-cat.svg';
+import MAINCAT from '@/public/pets/main-cat.svg?url';
 import { Button } from "@/components/ui/button";
 
 export default function Home() {

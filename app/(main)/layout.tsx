@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
-import LOGO from '@/public/logos/header-logo.svg';
+import LOGO from '@/public/logos/header-logo.svg?url';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (

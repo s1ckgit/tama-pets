@@ -1,5 +1,4 @@
 import { Pet } from '@prisma/client';
-
 export interface Credentials {
   email: string;
   password: string;
@@ -22,11 +21,14 @@ export interface Item {
   experience: number;
 }
 
-interface PetConstructorProp {
+export type PartType = 'brows' | 'ears' | 'head' | 'tail' | 'whiskers' | 'body';
+
+export interface PetConstructorProp {
   value: number;
-  name?: string;
-  part?: string;
-  id?: number;
+  color?: string;
+  name: string;
+  part: PartType;
+  id: number;
   size: {
     width: number,
     height: number
@@ -34,10 +36,11 @@ interface PetConstructorProp {
   position: {
     x: number,
     y: number
-  }
+  };
+  patterns: Map<PatternsPayload['id'], PatternsPayload>;
 }
 
-type BodyPropType = PetConstructorProp & { breed: BreedType };
+type BodyPropType = PetConstructorProp & { breed?: BreedType };
 export interface PetConstructorState {
   body: BodyPropType;
   brows: PetConstructorProp;
@@ -45,34 +48,33 @@ export interface PetConstructorState {
   head: PetConstructorProp;
   tail: PetConstructorProp;
   whiskers: PetConstructorProp;
-  patterns: PatternsPayload[];
-  [key: string]: PetConstructorProp | PatternsPayload[];
+  [key: string]: PetConstructorProp;
 }
 
-type PartType = 'brows' | 'ears' | 'head' | 'tail' | 'whiskers';
+export type ChangeBodyPayload = BodyPropType;
 
-export interface ChangeBodyPayload extends PetConstructorProp {
-  breed: BreedType
-}
-
-export interface PartsData extends PetConstructorProp {
-  name: string;
-  part: PartType;
-}
-
-export type ChangeVisionPayload = PartsData;
-
-export interface PatternsPayload extends PetConstructorProp {
-  part: PartType;
-  id: number;
+export type ChangeVisionPayload = PetConstructorProp & { part: Exclude<PartType, 'body'> };
+export interface PatternsPayload extends Omit<PetConstructorProp, 'patterns' | 'name' | 'part'> {
+  part: string;
+  partValue: number;
   color: string;
 }
 
 export interface ChangePatternsPayload {
   pattern: PatternsPayload;
-  delete?: boolean
-}
-export interface HistoryState {
-  history: PartsData[];
 }
 
+export interface ChangePatternColorPayload {
+  part: PartType;
+  patternID: PatternsPayload['id'];
+  color: PatternsPayload['color'];
+}
+
+export interface HistoryState {
+  history: (PetConstructorProp | BodyPropType)[];
+}
+
+export interface ChangePartColorPayload {
+  part: PartType;
+  color: string;
+}
