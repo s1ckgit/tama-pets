@@ -4,6 +4,86 @@
       "name": "baby-cat",
       "assets": [
         {
+          "alias": "body-1-pattern-14-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-14-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-13-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-13-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-12-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-12-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-11-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-11-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-10-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-10-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-9-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-9-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-8-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-8-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-7-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-7-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-6-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-6-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-5-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-5-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-4-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-4-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-3-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-3-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-2-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-2-mask.svg"
+        },
+        {
+          "alias": "body-1-pattern-1-mask",
+          "src": "/assets/baby-cat/body-1-patterns/body-1-pattern-1-mask.svg"
+        },
+        {
+          "alias": "ears-2-pattern-3-mask",
+          "src": "/assets/baby-cat/ears-2-patterns/ears-2-pattern-3-mask.svg"
+        },
+        {
+          "alias": "ears-2-pattern-2-mask",
+          "src": "/assets/baby-cat/ears-2-patterns/ears-2-pattern-2-mask.svg"
+        },
+        {
+          "alias": "ears-2-pattern-1-mask",
+          "src": "/assets/baby-cat/ears-2-patterns/ears-2-pattern-1-mask.svg"
+        },
+        {
+          "alias": "ears-3-pattern-3-mask",
+          "src": "/assets/baby-cat/ears-3-patterns/ears-3-pattern-3-mask.svg"
+        },
+        {
+          "alias": "ears-3-pattern-2-mask",
+          "src": "/assets/baby-cat/ears-3-patterns/ears-3-pattern-2-mask.svg"
+        },
+        {
+          "alias": "ears-3-pattern-1-mask",
+          "src": "/assets/baby-cat/ears-3-patterns/ears-3-pattern-1-mask.svg"
+        },
+        {
           "alias": "ears-1-pattern-3-mask",
           "src": "/assets/baby-cat/ears-1-patterns/ears-1-pattern-3-mask.svg"
         },

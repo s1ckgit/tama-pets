@@ -17,27 +17,37 @@ const PatternsSelection = () => {
   const earsKey = `ears-${earsValue}` as BabyCatPatternsEnumKey;
   const earsPatterns = BabyCatPatternsEnum[earsKey];
 
+  const bodyPatterns = BabyCatPatternsEnum['body-1' as BabyCatPatternsEnumKey];
 
   return (
     <Tabs>
       <TabsList>
-        <TabsTrigger value='ears'>Уши</TabsTrigger>
+        {earsPatterns && <TabsTrigger value='ears'>Уши</TabsTrigger>}
         {tailPatterns && <TabsTrigger value='tails'>Хвосты</TabsTrigger>}
+        {bodyPatterns && <TabsTrigger value='body'>Тело</TabsTrigger>}
       </TabsList>
-      <TabsContent value='ears'>
-        {earsPatterns && (
-          <TabsContent value='ears'>
-            <div className="flex gap-4 flex-wrap">
-              {earsPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
-            </div>
-          </TabsContent>
-        )}
-      </TabsContent>
-      {tailPatterns && (<TabsContent value='tails'>
-        <div className="flex gap-4 flex-wrap">
-          {tailPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
-        </div>
-      </TabsContent>)}
+      {earsPatterns && (
+        <TabsContent value='ears'>
+          <div className="flex gap-4 flex-wrap">
+            {earsPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          </div>
+        </TabsContent>
+      )}
+      {tailPatterns && (
+        <TabsContent value='tails'>
+          <div className="flex gap-4 flex-wrap">
+            {tailPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          </div>
+        </TabsContent>
+      )}
+      {bodyPatterns && (
+        <TabsContent value='body'>
+          <div className="flex gap-4 flex-wrap">
+            {bodyPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          </div>
+        </TabsContent>
+      )}
+      
     </Tabs>
   );
 };

@@ -189,6 +189,7 @@ export const BabyCatBrowsEnum: PartsEnumType = [
     id: 327911,
     part: "brows",
     name: "brows-2",
+    color: '#808080',
     value: 2,
     size: {
       width: 50,
@@ -204,6 +205,7 @@ export const BabyCatBrowsEnum: PartsEnumType = [
     id: 185852,
     part: "brows",
     name: "brows-1",
+    color: '#808080',
     value: 1,
     size: {
       width: 61,
@@ -315,6 +317,222 @@ export const BabyCatHeadEnum: PartsEnumType = [
 ];
 
 export const BabyCatPatternsEnum = {
+  'body-1': [
+    {
+      id: 691497,
+      part: "body",
+      partValue: 1,
+      value: 7,
+      size: {
+        width: 112,
+        height: 113
+      },
+      position: {
+        x: 56,
+        y: 211
+      },
+      color: "#1EDD1B"
+    },
+    {
+      id: 953979,
+      part: "body",
+      partValue: 1,
+      value: 8,
+      size: {
+        width: 44,
+        height: 35
+      },
+      position: {
+        x: 216,
+        y: 232
+      },
+      color: "#2F36FE"
+    },
+    {
+      id: 713836,
+      part: "body",
+      partValue: 1,
+      value: 9,
+      size: {
+        width: 156,
+        height: 167
+      },
+      position: {
+        x: 158,
+        y: 231
+      },
+      color: "#64F4D4"
+    },
+    {
+      id: 752960,
+      part: "body",
+      partValue: 1,
+      value: 10,
+      size: {
+        width: 45,
+        height: 109
+      },
+      position: {
+        x: 183,
+        y: 205
+      },
+      color: "#651B6F"
+    },
+    {
+      id: 858245,
+      part: "body",
+      partValue: 1,
+      value: 11,
+      size: {
+        width: 57,
+        height: 56
+      },
+      position: {
+        x: 133,
+        y: 271
+      },
+      color: "#F01C83"
+    },
+    {
+      id: 970336,
+      part: "body",
+      partValue: 1,
+      value: 12,
+      size: {
+        width: 27,
+        height: 64
+      },
+      position: {
+        x: 222,
+        y: 240
+      },
+      color: "#BBB6D2"
+    },
+    {
+      id: 492370,
+      part: "body",
+      partValue: 1,
+      value: 13,
+      size: {
+        width: 146,
+        height: 192
+      },
+      position: {
+        x: 164,
+        y: 232
+      },
+      color: "#F2FF1E"
+    },
+    {
+      id: 508972,
+      part: "body",
+      partValue: 1,
+      value: 14,
+      size: {
+        width: 128,
+        height: 167
+      },
+      position: {
+        x: 172,
+        y: 242
+      },
+      color: "#FDAC16"
+    }
+  ],
+  'ears-2': [
+    {
+      id: 412750,
+      part: "ears",
+      partValue: 2,
+      value: 1,
+      size: {
+        width: 132,
+        height: 27
+      },
+      position: {
+        x: 59,
+        y: 29
+      },
+      color: "#43D4F9"
+    },
+    {
+      id: 384368,
+      part: "ears",
+      partValue: 2,
+      value: 2,
+      size: {
+        width: 138,
+        height: 43
+      },
+      position: {
+        x: 69,
+        y: 39
+      },
+      color: "#2F6977"
+    },
+    {
+      id: 896301,
+      part: "ears",
+      partValue: 2,
+      value: 3,
+      size: {
+        width: 158,
+        height: 58
+      },
+      position: {
+        x: 79,
+        y: 42
+      },
+      color: "#A055F0"
+    }
+  ],
+  'ears-3': [
+    {
+      id: 682006,
+      part: "ears",
+      partValue: 3,
+      value: 1,
+      size: {
+        width: 119,
+        height: 12
+      },
+      position: {
+        x: 53,
+        y: 12
+      },
+      color: "#C4A4DF"
+    },
+    {
+      id: 385559,
+      part: "ears",
+      partValue: 3,
+      value: 2,
+      size: {
+        width: 153,
+        height: 40
+      },
+      position: {
+        x: 76,
+        y: 28
+      },
+      color: "#E6A187"
+    },
+    {
+      id: 613006,
+      part: "ears",
+      partValue: 3,
+      value: 3,
+      size: {
+        width: 174,
+        height: 53
+      },
+      position: {
+        x: 87,
+        y: 33
+      },
+      color: "#9DA224"
+    }
+  ],
   'ears-1': [
     {
       id: 491180,

@@ -20,12 +20,10 @@ const ColorsSelection = () => {
   };
   
   return (
-    <>
-      <HexColorPicker color={color} onChange={onColorChange} style={{ width: '50%', height: '100%' }}/>
-      <div className='w-[50%]'>
-        <ColorSettings setter={setPartToPaint} constructorState={constructorState} color={color} />
-      </div>
-    </>
+    <div className="flex gap-4 w-full h-full">
+      <HexColorPicker color={color} onChange={onColorChange} style={{ height: '100%', width:'50%' }}/>
+      <ColorSettings partToPaint={partToPaint} setter={setPartToPaint} constructorState={constructorState} color={color} setColor={setColor} />
+    </div>
   );
 };
 export default ColorsSelection;
