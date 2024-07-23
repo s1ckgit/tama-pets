@@ -1,13 +1,17 @@
-import { type PetConstructorProp } from './types';
+import { PatternsPayload, type PetConstructorProp } from './types';
 
 type PartsEnumType = PetConstructorProp[];
+
+type PatternsEnumType = {
+  [key: string]: PatternsPayload[]
+};
 
 export const BabyCatEarsEnum: PartsEnumType = [
   {
     id: 141113,
     part: "ears",
     name: "ears-2",
-    color: '#808080',
+    color: '#ffffff',
     value: 2,
     size: {
       width: 191,
@@ -23,7 +27,7 @@ export const BabyCatEarsEnum: PartsEnumType = [
     id: 19104,
     part: "ears",
     name: "ears-3",
-    color: '#808080',
+    color: '#ffffff',
     value: 3,
     size: {
       width: 228,
@@ -39,7 +43,7 @@ export const BabyCatEarsEnum: PartsEnumType = [
     id: 795623,
     part: "ears",
     name: "ears-1",
-    color: '#808080',
+    color: '#ffffff',
     value: 1,
     size: {
       width: 160,
@@ -58,7 +62,7 @@ export const BabyCatTailsEnum: PartsEnumType = [
     id: 883941,
     part: "tail",
     name: "tail-4",
-    color: '#808080',
+    color: '#ffffff',
     value: 4,
     size: {
       width: 113,
@@ -74,7 +78,7 @@ export const BabyCatTailsEnum: PartsEnumType = [
     id: 344573,
     part: "tail",
     name: "tail-3",
-    color: '#808080',
+    color: '#ffffff',
     value: 3,
     size: {
       width: 56,
@@ -90,7 +94,7 @@ export const BabyCatTailsEnum: PartsEnumType = [
     id: 713073,
     part: "tail",
     name: "tail-2",
-    color: '#808080',
+    color: '#ffffff',
     value: 2,
     size: {
       width: 72,
@@ -106,7 +110,7 @@ export const BabyCatTailsEnum: PartsEnumType = [
     id: 711425,
     part: "tail",
     name: "tail-1",
-    color: '#808080',
+    color: '#ffffff',
     value: 1,
     size: {
       width: 146,
@@ -173,7 +177,7 @@ export const BabyCatBrowsEnum: PartsEnumType = [
     id: 892425,
     part: "brows",
     name: "brows-3",
-    color: '#808080',
+    color: '#ffffff',
     value: 3,
     size: {
       width: 57,
@@ -189,7 +193,7 @@ export const BabyCatBrowsEnum: PartsEnumType = [
     id: 327911,
     part: "brows",
     name: "brows-2",
-    color: '#808080',
+    color: '#ffffff',
     value: 2,
     size: {
       width: 50,
@@ -205,7 +209,7 @@ export const BabyCatBrowsEnum: PartsEnumType = [
     id: 185852,
     part: "brows",
     name: "brows-1",
-    color: '#808080',
+    color: '#ffffff',
     value: 1,
     size: {
       width: 61,
@@ -224,7 +228,7 @@ export const BabyCatHeadEnum: PartsEnumType = [
     id: 112731,
     part: "head",
     name: "head-6",
-    color: '#808080',
+    color: '#ffffff',
     value: 6,
     size: {
       width: 45,
@@ -240,7 +244,7 @@ export const BabyCatHeadEnum: PartsEnumType = [
     id: 288879,
     part: "head",
     name: "head-5",
-    color: '#808080',
+    color: '#ffffff',
     value: 5,
     size: {
       width: 45,
@@ -271,7 +275,7 @@ export const BabyCatHeadEnum: PartsEnumType = [
     id: 874084,
     part: "head",
     name: "head-3",
-    color: '#808080',
+    color: '#ffffff',
     value: 3,
     size: {
       width: 36,
@@ -287,7 +291,7 @@ export const BabyCatHeadEnum: PartsEnumType = [
     id: 387939,
     part: "head",
     name: "head-2",
-    color: '#808080',
+    color: '#ffffff',
     value: 2,
     size: {
       width: 70,
@@ -316,7 +320,7 @@ export const BabyCatHeadEnum: PartsEnumType = [
   }
 ];
 
-export const BabyCatPatternsEnum = {
+export const BabyCatPatternsEnum: PatternsEnumType = {
   'body-1': [
     {
       id: 691497,

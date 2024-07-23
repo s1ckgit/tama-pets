@@ -6,14 +6,19 @@ import * as Pixi from 'pixi.js';
 import { usePetConstructor } from "@/lib/hooks/use-pet-constructor";
 import manifest from '@/manifest.json';
 
-import HistoryPetPart from "@/components/history-pet-part";
 import PetPartsPicker from "@/components/pet-parts-picker";
 import ColorsSelection from "@/components/colors-selection";
 import PatternsSelection from "@/components/patterns-selection";
 import PatternsColorSelection from "@/components/patterns-color-selection";
+import ColorsHistoryButton from "@/components/colors-history-button";
+import { useAppSelector } from "@/lib/hooks/store-hooks";
+import { PartType } from "@/lib/types";
 
 
 const Canvas = () => {
+  const petConstructorState = useAppSelector((state) => state.petConstructor);
+  const parts = Object.keys(petConstructorState) as PartType[];
+
   const [appIsStarted, setAppIsStarted] = useState(false);
 
   const appRef = useRef<Pixi.Application>();
@@ -77,13 +82,22 @@ const Canvas = () => {
         </div>
       </div>
       <div className='grid grid-rows-[100px,auto] [grid-template-areas:"story""game"] [grid-area:subgrid-2] gap-3'>
-        <div className="tama-container [grid-area:story]">
-          <HistoryPetPart />
+        <div className="tama-container [grid-area:story] flex items-center gap-2 justify-evenly">
+          {
+            parts.map((part) => {
+              const partState = petConstructorState[part];
+              if(partState.color) {
+                return <ColorsHistoryButton key={part} partState={partState} />;
+              }
+            })
+          }
+          
         </div>
         <div className='tama-container [grid-area:game]' ref={canvasRef}></div>
       </div>
       <div className='grid [grid-template-rows:300px_auto] [grid-template-areas:"pattern-colors""patterns"] [grid-area: subgrid-3] gap-3'>
-        <div className="tama-container [grid-area:pattern-colors] flex gap-x-3">
+        <div className="tama-container [grid-area:pattern-colors] flex flex-col gap-3 items-center">
+          <h2 className="">Какой паттерн будем красить?</h2>
           <PatternsColorSelection />
         </div>
         <div className="tama-container [grid-area:patterns]">

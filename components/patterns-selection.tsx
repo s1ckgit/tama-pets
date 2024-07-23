@@ -28,22 +28,22 @@ const PatternsSelection = () => {
       </TabsList>
       {earsPatterns && (
         <TabsContent value='ears'>
-          <div className="flex gap-4 flex-wrap">
-            {earsPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          <div className="flex gap-2 flex-wrap">
+            {earsPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
       )}
       {tailPatterns && (
         <TabsContent value='tails'>
-          <div className="flex gap-4 flex-wrap">
-            {tailPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          <div className="flex gap-2 flex-wrap">
+            {tailPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
       )}
       {bodyPatterns && (
         <TabsContent value='body'>
-          <div className="flex gap-4 flex-wrap">
-            {bodyPatterns.map((item) => <Pattern variant="default" data={{ pattern: item }} key={item.id} />)}
+          <div className="flex gap-2 flex-wrap">
+            {bodyPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
       )}

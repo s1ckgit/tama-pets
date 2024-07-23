@@ -1,27 +1,21 @@
 import { partsDictionary } from "@/lib/parts-dictionary";
-import type { PartType, PetConstructorState } from "@/lib/types";
-import { useState, type Dispatch, type SetStateAction } from "react";
+import type { PartType } from "@/lib/types";
 import { Button } from "./ui/button";
-import { useAppDispatch } from "@/lib/hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
 import { changePartColor } from "@/lib/redux/pet-constructor-slice";
 
 import { CANCEL_ICON, CONFIRM_ICON } from "@/lib/icons";
 
-interface ColorSettingsProps { 
-  constructorState: PetConstructorState, 
-  partToPaint: PartType | null;
-  color: string;
-  setter: Dispatch<SetStateAction<PartType | null>>
-  setColor: Dispatch<SetStateAction<string>>
-}
+import { changeCancelColor, changeColor, changePartToPaint } from '@/lib/redux/color-picker-slice';
 
 
-const ColorSettings = ({ constructorState, setter, partToPaint, color, setColor }: ColorSettingsProps) => {
+const ColorSettings = () => {
   const dispatch = useAppDispatch();
+  const constructorState = useAppSelector((state) => state.petConstructor);
+  const colorPickerState = useAppSelector((state) => state.colorPicker);
+  const { partToPaint, cancelColor, color } = colorPickerState;
 
   const parts = Object.keys(constructorState) as PartType[];
-
-  const [cancelColor, setCancelColor] = useState<string>('');
 
   return (
     <div className="flex flex-col gap-y-2 w-[50%]">
@@ -33,7 +27,7 @@ const ColorSettings = ({ constructorState, setter, partToPaint, color, setColor 
               <Button
                 className="hover:bg-transparent"
                variant='ghost' 
-               onClick={() => setter(null)} 
+               onClick={() => dispatch(changePartToPaint(undefined))} 
                size='icon'>
                 <CONFIRM_ICON />
               </Button>
@@ -41,9 +35,9 @@ const ColorSettings = ({ constructorState, setter, partToPaint, color, setColor 
                 className="hover:bg-transparent"
                 variant='ghost' 
                 onClick={() => {
-                  setColor(cancelColor);
-                  setter(null);
-                  dispatch(changePartColor({ part: partToPaint, color: cancelColor }));
+                  dispatch(changeColor(cancelColor!));
+                  dispatch(changePartToPaint(undefined));
+                  dispatch(changePartColor({ part: partToPaint, color: cancelColor! }));
                 }} 
                 size='icon'
               >
@@ -62,8 +56,8 @@ const ColorSettings = ({ constructorState, setter, partToPaint, color, setColor 
                   size='sm'
                   variant='outline'
                   onClick={() => {
-                    setter(part);
-                    setCancelColor(partState.color!);
+                    dispatch(changePartToPaint(part));
+                    dispatch(changeCancelColor(partState.color));
                     dispatch(changePartColor({ part, color }));
                   }}
                   key={partState.id}

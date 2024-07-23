@@ -3,6 +3,7 @@ import { type ButtonHTMLAttributes } from "react";
 import { useAppDispatch } from "@/lib/hooks/store-hooks";
 import { type ChangeVisionPayload } from "@/lib/types";
 import { changeVision } from "@/lib/redux/pet-constructor-slice";
+import { Button } from "./ui/button";
 
 
 interface PetPartProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,10 +20,10 @@ const PetPart = ({ data, variant, ...props }: PetPartProps) => {
   return (
     <>
       {variant === 'history' && (
-        <button {...props} onClick={onClick} className="w-auto h-6 bg-blue-500 text-zinc-50">{data.name}</button>
+        <Button size='sm' {...props} onClick={onClick}>{data.name}</Button>
       )}
       {variant === 'default' && (
-        <button {...props} onClick={onClick} className="w-auto h-12 bg-blue-500 text-zinc-50">{data.name}</button>
+        <Button variant='outline' {...props} onClick={onClick} >{data.name}</Button>
       )}
     </>
   );

@@ -40,7 +40,7 @@ export interface PetConstructorProp {
   patterns: Map<PatternsPayload['id'], PatternsPayload>;
 }
 
-type BodyPropType = PetConstructorProp & { breed?: BreedType };
+export type BodyPropType = PetConstructorProp & { breed?: BreedType };
 export interface PetConstructorState {
   body: BodyPropType;
   brows: PetConstructorProp;
@@ -54,8 +54,7 @@ export interface PetConstructorState {
 export type ChangeBodyPayload = BodyPropType;
 
 export type ChangeVisionPayload = PetConstructorProp & { part: Exclude<PartType, 'body'> };
-export interface PatternsPayload extends Omit<PetConstructorProp, 'patterns' | 'name' | 'part'> {
-  part: string;
+export interface PatternsPayload extends Omit<PetConstructorProp, 'patterns' | 'name'> {
   partValue: number;
   color: string;
 }

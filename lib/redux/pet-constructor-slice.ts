@@ -20,7 +20,7 @@ export function getRandomHexColor() {
 const initialState = {
   body: {
     breed: 'cat',
-    color: '#808080',
+    color: '#ffffff',
     part: 'body',
     name: 'тело-1',
     value: 1,

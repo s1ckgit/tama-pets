@@ -1,30 +1,29 @@
 import { type ButtonHTMLAttributes } from "react";
 
-import { useAppDispatch } from "@/lib/hooks/store-hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
 import { type ChangePatternsPayload } from "@/lib/types";
-import { changePatterns } from "@/lib/redux/pet-constructor-slice";
+import { changePatternColor, changePatterns } from "@/lib/redux/pet-constructor-slice";
+import { Button } from "./ui/button";
 
 
 interface PatternProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   data: ChangePatternsPayload;
-  variant: 'history' | 'default'
 }
 
-const Pattern = ({ data, variant, ...props }: PatternProps) => {
+const Pattern = ({ data, ...props }: PatternProps) => {
   const dispatch = useAppDispatch();
+
+  const patternColorPickerState = useAppSelector((state) => state.patternColorPicker);
+  const { color } = patternColorPickerState;
+
+
   const onClick = () => {
     dispatch(changePatterns(data));
+    dispatch(changePatternColor({ part: data.pattern.part, patternID: data.pattern.id, color }));
   };
 
   return (
-    <>
-      {variant === 'history' && (
-        <button {...props} onClick={onClick} className="w-auto h-6 bg-blue-500 text-zinc-50">{data.pattern.id}</button>
-      )}
-      {variant === 'default' && (
-        <button {...props} onClick={onClick} className="w-auto h-12 bg-blue-500 text-zinc-50">{data.pattern.id}</button>
-      )}
-    </>
+    <Button variant='outline' {...props} onClick={onClick} >{data.pattern.id}</Button>
   );
 };
 export default Pattern;

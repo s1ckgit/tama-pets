@@ -15,19 +15,19 @@ const PetPartsPicker = () => {
         <TabsTrigger className="basis-full" value="tails">Хвосты</TabsTrigger>
         <TabsTrigger className="basis-full" value="whiskers">Усы</TabsTrigger>
       </TabsList>
-      <TabsContent value="brows">
+      <TabsContent className="flex flex-wrap gap-2" value="brows">
         {BabyCatBrowsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
       </TabsContent>
-      <TabsContent value="head">
+      <TabsContent className="flex flex-wrap gap-2" value="head">
         {BabyCatHeadEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
       </TabsContent>
-      <TabsContent value="ears">
+      <TabsContent className="flex flex-wrap gap-2" value="ears">
         {BabyCatEarsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
       </TabsContent>
-      <TabsContent value="tails">
+      <TabsContent className="flex flex-wrap gap-2" value="tails">
         {BabyCatTailsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
       </TabsContent>
-      <TabsContent value="whiskers">
+      <TabsContent className="flex flex-wrap gap-2" value="whiskers">
         {BabyCatWhiskersEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
       </TabsContent>
     </Tabs>
