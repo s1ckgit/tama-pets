@@ -18,7 +18,7 @@ const ColorSettings = () => {
   const parts = Object.keys(constructorState) as PartType[];
 
   return (
-    <div className="flex flex-col gap-y-2 w-[50%]">
+    <div className="flex flex-col gap-y-2 w-[100%]">
       {
         partToPaint && (
           <div className="w-full flex flex-col items-center gap-2">

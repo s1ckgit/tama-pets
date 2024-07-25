@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={cn('font-sans', fontSans.variable)}>
       <SessionProvider>
         <StateProvider>
-          {children}
+            {children}
         </StateProvider>
       </SessionProvider>
       </body>

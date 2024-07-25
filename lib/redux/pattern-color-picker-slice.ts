@@ -13,7 +13,7 @@ interface PatternColorPickerState {
 }
 
 const initialState = {
-  color: '#ffffff',
+  color: '#000000',
   cancelColor: undefined,
   patternToPaint: undefined
 } as PatternColorPickerState;

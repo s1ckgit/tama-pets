@@ -19,10 +19,8 @@ const PatternsColorSelection = () => {
 
   return (
     <div className="flex gap-4 w-full h-full">
-      <HexColorPicker color={color} onChange={onColorChange} style={{ width: '50%', height: '100%' }}/>
-      <div className='w-[50%]'>
-        <PatternColorSettings />
-      </div>
+      <HexColorPicker className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 transition-opacity" data-disabled={!patternToPaint} color={color} onChange={onColorChange} style={{ width: '100%', height: '100%' }}/>
+      <PatternColorSettings />
     </div>
   );
 };

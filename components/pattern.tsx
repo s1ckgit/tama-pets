@@ -1,16 +1,10 @@
-import { type ButtonHTMLAttributes } from "react";
-
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
-import { type ChangePatternsPayload } from "@/lib/types";
+import type { PatternButtonProps } from "@/lib/types";
 import { changePatternColor, changePatterns } from "@/lib/redux/pet-constructor-slice";
 import { Button } from "./ui/button";
+import { PATTERNSPREVIEWMAP } from "@/lib/icons";
 
-
-interface PatternProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  data: ChangePatternsPayload;
-}
-
-const Pattern = ({ data, ...props }: PatternProps) => {
+const Pattern = ({ data, ...props }: PatternButtonProps) => {
   const dispatch = useAppDispatch();
 
   const patternColorPickerState = useAppSelector((state) => state.patternColorPicker);
@@ -22,8 +16,12 @@ const Pattern = ({ data, ...props }: PatternProps) => {
     dispatch(changePatternColor({ part: data.pattern.part, patternID: data.pattern.id, color }));
   };
 
+  const PreviewIcon = PATTERNSPREVIEWMAP.get(data.pattern.id)!;
+
   return (
-    <Button variant='outline' {...props} onClick={onClick} >{data.pattern.id}</Button>
+    <Button className="h-full" variant='outline' {...props} onClick={onClick} >
+      <PreviewIcon className="w-12 h-12"/>
+    </Button>
   );
 };
 export default Pattern;

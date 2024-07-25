@@ -323,7 +323,97 @@ export const BabyCatHeadEnum: PartsEnumType = [
 export const BabyCatPatternsEnum: PatternsEnumType = {
   'body-1': [
     {
-      id: 691497,
+      id: 446380,
+      part: "body",
+      partValue: 1,
+      value: 1,
+      size: {
+        width: 51,
+        height: 50
+      },
+      position: {
+        x: 30,
+        y: 179
+      },
+      color: "#C95064"
+    },
+    {
+      id: 479766,
+      part: "body",
+      partValue: 1,
+      value: 2,
+      size: {
+        width: 57,
+        height: 42
+      },
+      position: {
+        x: 29,
+        y: 243
+      },
+      color: "#D8B73E"
+    },
+    {
+      id: 368041,
+      part: "body",
+      partValue: 1,
+      value: 3,
+      size: {
+        width: 109,
+        height: 108
+      },
+      position: {
+        x: 59,
+        y: 208
+      },
+      color: "#BA2894"
+    },
+    {
+      id: 786102,
+      part: "body",
+      partValue: 1,
+      value: 4,
+      size: {
+        width: 132,
+        height: 163
+      },
+      position: {
+        x: 71,
+        y: 236
+      },
+      color: "#549998"
+    },
+    {
+      id: 300567,
+      part: "body",
+      partValue: 1,
+      value: 5,
+      size: {
+        width: 71,
+        height: 119
+      },
+      position: {
+        x: 202,
+        y: 268
+      },
+      color: "#BB19DC"
+    },
+    {
+      id: 836578,
+      part: "body",
+      partValue: 1,
+      value: 6,
+      size: {
+        width: 176,
+        height: 125
+      },
+      position: {
+        x: 150,
+        y: 266
+      },
+      color: "#FDC18F"
+    },
+    {
+      id: 711486,
       part: "body",
       partValue: 1,
       value: 7,
@@ -335,10 +425,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 56,
         y: 211
       },
-      color: "#1EDD1B"
+      color: "#BD96BE"
     },
     {
-      id: 953979,
+      id: 660980,
       part: "body",
       partValue: 1,
       value: 8,
@@ -350,10 +440,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 216,
         y: 232
       },
-      color: "#2F36FE"
+      color: "#EC7CD3"
     },
     {
-      id: 713836,
+      id: 320983,
       part: "body",
       partValue: 1,
       value: 9,
@@ -365,10 +455,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 158,
         y: 231
       },
-      color: "#64F4D4"
+      color: "#E45B12"
     },
     {
-      id: 752960,
+      id: 992889,
       part: "body",
       partValue: 1,
       value: 10,
@@ -380,10 +470,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 183,
         y: 205
       },
-      color: "#651B6F"
+      color: "#60A076"
     },
     {
-      id: 858245,
+      id: 268554,
       part: "body",
       partValue: 1,
       value: 11,
@@ -395,10 +485,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 133,
         y: 271
       },
-      color: "#F01C83"
+      color: "#CAD7B0"
     },
     {
-      id: 970336,
+      id: 82489,
       part: "body",
       partValue: 1,
       value: 12,
@@ -410,10 +500,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 222,
         y: 240
       },
-      color: "#BBB6D2"
+      color: "#743296"
     },
     {
-      id: 492370,
+      id: 360900,
       part: "body",
       partValue: 1,
       value: 13,
@@ -425,10 +515,10 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 164,
         y: 232
       },
-      color: "#F2FF1E"
+      color: "#5F44F0"
     },
     {
-      id: 508972,
+      id: 440795,
       part: "body",
       partValue: 1,
       value: 14,
@@ -440,7 +530,7 @@ export const BabyCatPatternsEnum: PatternsEnumType = {
         x: 172,
         y: 242
       },
-      color: "#FDAC16"
+      color: "#7BC006"
     }
   ],
   'ears-2': [

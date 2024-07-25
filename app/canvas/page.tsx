@@ -86,8 +86,20 @@ const Canvas = () => {
           {
             parts.map((part) => {
               const partState = petConstructorState[part];
+              const patterns = partState.patterns;
+              const patternsButtons = Array.from(patterns.entries()).map(([id, pattern]) => {
+                return (
+                  <ColorsHistoryButton key={id} color={pattern.color} />
+                );
+              });
+
               if(partState.color) {
-                return <ColorsHistoryButton key={part} partState={partState} />;
+                return (
+                  <>
+                    <ColorsHistoryButton key={part} color={partState.color} />
+                    {patternsButtons.map((button) => button)}
+                  </>
+                );
               }
             })
           }

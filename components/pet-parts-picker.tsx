@@ -1,11 +1,20 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import PetPart from "@/components/pet-part";
 import { BabyCatBrowsEnum, BabyCatEarsEnum, BabyCatHeadEnum, BabyCatTailsEnum, BabyCatWhiskersEnum } from "@/lib/assets-info";
-import { type ChangeVisionPayload } from "@/lib/types";
+import { PetConstructorProp, type ChangeVisionPayload } from "@/lib/types";
+import { useAppSelector } from "@/lib/hooks/store-hooks";
 
 
 
 const PetPartsPicker = () => {
+  const colorPickerState = useAppSelector((state) => state.colorPicker);
+  const { color } = colorPickerState;
+
+  function renderPetPart(item: PetConstructorProp) {
+    const colorValue = item.color ? color : undefined;
+    return <PetPart color={color} data={{ ...item, color: colorValue } as ChangeVisionPayload} key={item.name}/>;
+  }
+
   return (
     <Tabs className="w-auto">
       <TabsList className="flex">
@@ -15,20 +24,20 @@ const PetPartsPicker = () => {
         <TabsTrigger className="basis-full" value="tails">Хвосты</TabsTrigger>
         <TabsTrigger className="basis-full" value="whiskers">Усы</TabsTrigger>
       </TabsList>
-      <TabsContent className="flex flex-wrap gap-2" value="brows">
-        {BabyCatBrowsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
+      <TabsContent className="grid grid-cols-[repeat(3,1fr)] gap-2" value="brows">
+        {BabyCatBrowsEnum.map((item) => renderPetPart(item))}
       </TabsContent>
-      <TabsContent className="flex flex-wrap gap-2" value="head">
-        {BabyCatHeadEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
+      <TabsContent className="grid grid-cols-[repeat(3,1fr)] gap-2" value="head">
+        {BabyCatHeadEnum.map((item) => renderPetPart(item))}
       </TabsContent>
-      <TabsContent className="flex flex-wrap gap-2" value="ears">
-        {BabyCatEarsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
+      <TabsContent className="grid grid-cols-[repeat(3,1fr)] gap-2" value="ears">
+        {BabyCatEarsEnum.map((item) => renderPetPart(item))}
       </TabsContent>
-      <TabsContent className="flex flex-wrap gap-2" value="tails">
-        {BabyCatTailsEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
+      <TabsContent className="grid grid-cols-[repeat(3,1fr)] gap-2" value="tails">
+        {BabyCatTailsEnum.map((item) => renderPetPart(item))}
       </TabsContent>
-      <TabsContent className="flex flex-wrap gap-2" value="whiskers">
-        {BabyCatWhiskersEnum.map((item) => <PetPart variant="default" data={item as ChangeVisionPayload} key={item.name}/>)}
+      <TabsContent className="grid grid-cols-[repeat(3,1fr)] gap-2" value="whiskers">
+        {BabyCatWhiskersEnum.map((item) => renderPetPart(item))}
       </TabsContent>
     </Tabs>
   );

@@ -19,7 +19,7 @@ const ColorsSelection = () => {
   
   return (
     <div className="flex gap-4 w-full h-full">
-      <HexColorPicker color={color} onChange={onColorChange} style={{ height: '100%', width:'50%' }}/>
+      <HexColorPicker className="data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 transition-opacity" data-disabled={!partToPaint} color={color} onChange={onColorChange} style={{ height: '100%', width:'100%' }}/>
       <ColorSettings />
     </div>
   );

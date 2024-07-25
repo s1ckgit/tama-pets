@@ -1,4 +1,5 @@
 import { Pet } from '@prisma/client';
+import type { ButtonHTMLAttributes } from 'react';
 export interface Credentials {
   email: string;
   password: string;
@@ -76,4 +77,8 @@ export interface HistoryState {
 export interface ChangePartColorPayload {
   part: PartType;
   color: string;
+}
+
+export interface PatternButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  data: ChangePatternsPayload;
 }

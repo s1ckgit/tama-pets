@@ -2,12 +2,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BabyCatPatternsEnum } from "@/lib/assets-info";
 import { useAppSelector } from "@/lib/hooks/store-hooks";
 import Pattern from "./pattern";
+import StylingSVGByName from "./styling-svg-by-name";
 
 type BabyCatPatternsEnumKey = keyof typeof BabyCatPatternsEnum;
 
 
 const PatternsSelection = () => {
   const petProps = useAppSelector((state) => state.petConstructor);
+  const patternColorPickerState = useAppSelector((state) => state.patternColorPicker);
+  const { color } = patternColorPickerState;
 
   const tailValue = petProps.tail.value;
   const tailKey = `tail-${tailValue}` as BabyCatPatternsEnumKey;
@@ -29,6 +32,7 @@ const PatternsSelection = () => {
       {earsPatterns && (
         <TabsContent value='ears'>
           <div className="flex gap-2 flex-wrap">
+            <StylingSVGByName color={color} />
             {earsPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
@@ -36,6 +40,7 @@ const PatternsSelection = () => {
       {tailPatterns && (
         <TabsContent value='tails'>
           <div className="flex gap-2 flex-wrap">
+            <StylingSVGByName color={color} />
             {tailPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
@@ -43,6 +48,7 @@ const PatternsSelection = () => {
       {bodyPatterns && (
         <TabsContent value='body'>
           <div className="flex gap-2 flex-wrap">
+            <StylingSVGByName color={color} />
             {bodyPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
           </div>
         </TabsContent>
