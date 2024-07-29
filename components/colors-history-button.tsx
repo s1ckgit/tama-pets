@@ -13,9 +13,9 @@ const ColorsHistoryButton = ({ color }: { color: string }) => {
   const [debouncedColor] = useDebounce(color, 500);
 
   return (
-    <Button 
+    <Button
+      size='colorHistory'
       variant='outline'
-      size='icon'
       style={{ backgroundColor: debouncedColor }}
       onClick={() => {
         dispatch(changeColor(debouncedColor));

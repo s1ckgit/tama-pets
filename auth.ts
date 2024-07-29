@@ -43,15 +43,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+
+        const userPet = await db.pet.findUnique({
+          where: {
+            userId: user.id
+          }
+        });
+
+        if (userPet) {
+          token.pet = userPet['id'];
+        }
       }
       return token;
     },
     async session({ session, token }) {
-      if (token.id) {
-        session.user.id = token.id as string;
+      session.user.id = token.id as string;
+      if (token.pet) {
+        session.user.pet = token.pet as string;
       }
       return session;
-
     }
   }
 });

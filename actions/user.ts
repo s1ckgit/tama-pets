@@ -1,13 +1,21 @@
 'use server';
 
-import { signOut } from "@/auth";
-import { type RegisterCredentials } from "@/lib/types";
+import { Inputs } from "@/components/credentials-form";
+import { signIn, signOut } from "@/auth";
+import { type Credentials } from "@/lib/types";
 import { db } from "@/lib/utils/db";
 import { hashPassword } from "@/lib/utils/hash-password";
-import { redirect } from "next/dist/client/components/redirect";
+import { redirect } from 'next/navigation';
 
-export const signUp = async (data: RegisterCredentials) => {
-  const { email, password, color, breed, name } = data;
+export async function credentialsFormSubmitFunction ({ email, password }: Inputs<typeof action>, action: 'signup' | 'signin') {
+  if (action === 'signup') {
+    await signUp({ email, password });
+  }
+  await signIn('credentials', { email, password });
+}
+
+export const signUp = async (data: Credentials) => {
+  const { email, password } = data;
 
   const hash = hashPassword(password);
   try {
@@ -18,24 +26,7 @@ export const signUp = async (data: RegisterCredentials) => {
       }
     });
 
-    const newPet = await db.pet.create({
-      data: {
-        color,
-        breed,
-        name,
-        userId: newUser.id
-      }
-    });
-
-    const inventory = await db.petInventory.create({
-      data: {
-        pet: {
-          connect: { id: newPet.id }
-        }
-      }
-    });
-
-    console.log('succes', newUser, newPet, inventory);
+    console.log('succes', newUser);
   } catch(e) {
     console.log('чот наебнулось', e);
   }
@@ -45,11 +36,9 @@ export const logout = async () => {
  try {
     await signOut({ redirect: false });
     console.log('succesfully signout');
+    redirect('/');
  } catch(e) {
   console.error('error to signOut', e);
- }
- finally {
-  redirect('/');
  }
 };
 

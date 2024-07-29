@@ -1,40 +1,8 @@
-import { signUp } from "@/actions/user";
+import CredentialsForm from "@/components/credentials-form";
 
- 
-export default function SignUp() {
+const Page = () => {
   return (
-    <form
-      action={async (formData) => {
-        "use server";
-        const email = formData.get('email') as string;
-        const password = formData.get('password') as string;
-        const breed = formData.get('breed') as string;
-        const color = formData.get('color') as string;
-        const name = formData.get('name') as string;
-        await signUp({ email, password, breed, color, name });
-      }}
-    >
-      <label>
-        Email
-        <input name="email" type="email" />
-      </label>
-      <label>
-        Password
-        <input name="password" type="password" />
-      </label>
-      <label>
-        breed
-        <input name="breed" type="text" />
-      </label>
-      <label>
-        color
-        <input name="color" type="text" />
-      </label>
-      <label>
-        Name
-        <input name="name" type="text" />
-      </label>
-      <button>Sign In</button>
-    </form>
+    <CredentialsForm type="signup" />
   );
-}
+};
+export default Page;

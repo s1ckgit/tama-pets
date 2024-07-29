@@ -19,6 +19,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'register-background': "url('/backgrounds/register-background.jpg')"
+      },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },

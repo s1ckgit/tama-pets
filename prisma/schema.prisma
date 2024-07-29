@@ -27,14 +27,13 @@ model User {
 
 model Pet {
   id          String   @id @default(uuid())
-  color       String
-  breed       String
   name        String
-  hunger      Float      @default(100) 
-  thirst      Float      @default(100)
+  hunger      Float    @default(100) 
+  thirst      Float    @default(100)
   cleanliness Float    @default(100)
-  fatigue     Float      @default(100)
-  health      Float      @default(100)
+  fatigue     Float    @default(100)
+  health      Float    @default(100)
+  appearance  Json
   userId      String   @unique
   user        User     @relation(fields: [userId], references: [id])
   inventory   PetInventory?

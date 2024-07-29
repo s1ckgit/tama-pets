@@ -1,5 +1,6 @@
 import CANCEL_ICON from '@/public/icons/cancel.svg';
 import CONFIRM_ICON from '@/public/icons/confirm.svg';
+import LOADER_ICON from '@/public/icons/loader.svg';
 
 import BABYCATBROWS1 from '@/public/assets/baby-cat/previews/baby-cat-brows-1.svg';
 import BABYCATBROWS2 from '@/public/assets/baby-cat/previews/baby-cat-brows-2.svg';
@@ -163,6 +164,7 @@ const PREVIEWSMAP = new Map([
 export { 
   CANCEL_ICON,
   CONFIRM_ICON,
+  LOADER_ICON,
 
   PREVIEWSMAP,
   PATTERNSPREVIEWMAP

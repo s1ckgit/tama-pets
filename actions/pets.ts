@@ -1,7 +1,23 @@
 'use server';
 
-import { type Stats, type PetWithIndex, type PetCharacteristics } from "@/lib/types";
+import type { Stats, PetWithIndex } from "@/lib/types";
 import { db } from "@/lib/utils/db";
+
+export const createPet = async ({ appearance, name, userId }: { appearance: string, name: string; userId: string }) => {
+  try {
+    const newPet = await db.pet.create({
+      data: {
+        appearance,
+        name,
+        userId
+      }
+    });
+    console.log(newPet);
+  }
+  catch(e) {
+    console.log(e);
+  }
+};
 
 export const fetchPet = async (userId: string) => {
   const pet = await db.pet.findUnique({
@@ -16,7 +32,7 @@ export const fetchPet = async (userId: string) => {
   } as PetWithIndex;
 };
 
-export const updatePet = async (petData: Partial<PetCharacteristics>, userId: string) => {
+export const updatePet = async (petData: Stats, userId: string) => {
   const updatedPet = await db.pet.update({
     where: { userId },
     data: petData
@@ -67,8 +83,6 @@ export const updateActivePetsStatusByTime = async () => {
     });
     await Promise.all(updatePromises);
   }
-
-  
 };
 
 export const changePetsStats = async (id: string, stats: Stats) => {

@@ -2,31 +2,45 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 
 const middleware = auth(async (req) => {
-  if (!req.auth && req.nextUrl.pathname !== "/login") {
-    const newUrl = new URL("/login", req.nextUrl.origin);
-    return NextResponse.redirect(newUrl);
-  }
+  const { pathname } = req.nextUrl;
+  const { auth } = req;
 
-  const session = req.auth;
+  if (pathname.startsWith('/game')) {
+    if(!auth) {
+      const newUrl = new URL("/signin", req.nextUrl.origin);
+      return NextResponse.redirect(newUrl);
+    }
+    else {
+      const session = auth;
 
-  if (session?.user) {
-    const userID = session.user.id;
-    const host = req.nextUrl.origin;
-    await fetch(`${host}/api/users/active-status`, {
-      method: 'POST',
-      body: userID,
-      headers: {
-        'Content-Type': 'text/html; charset=utf-8'
+      if (session.user) {
+        const userID = session.user.id;
+        const host = req.nextUrl.origin;
+        await fetch(`${host}/api/users/active-status`, {
+          method: 'POST',
+          body: userID,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8'
+          }
+        });
       }
-    });
-    console.log('status updated', userID);
+    
+      return NextResponse.next();
+    }
+  }
+  else if(pathname.startsWith('/signin') || pathname.startsWith('/signup')) {
+    if(auth) {
+      const newUrl = new URL("/game/create", req.nextUrl.origin);
+      return NextResponse.redirect(newUrl);
+    }
+
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
 });
 
 export { middleware };
 
 export const config = {
-  matcher: ["/game/:path*"],
+  matcher: ["/game/:path*", '/signin', '/signup'],
 };
