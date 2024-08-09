@@ -4,7 +4,7 @@ interface SerializedMap {
   value: Array<[number, object]>
 }
 
-export const serializeReplacer = (key: string, value: { [key: string]: unknown }) => {
+export const serializeReplacer = (key: string, value: { [key: string]: any }) => {
   const keys = Object.keys(value);
 
   for(const key of keys) {
