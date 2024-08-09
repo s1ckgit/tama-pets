@@ -23,7 +23,7 @@ export const serializeReplacer = (key: string, value: { [key: string]: any }) =>
 };
 
 
-export const deserializeReviver = (key: string, value: { [key: string]: SerializedMap | unknown }) => {
+export const deserializeReviver = (key: string, value: { [key: string]: SerializedMap | any }) => {
   const keys = Object.keys(value);
 
   for(const key of keys) {
