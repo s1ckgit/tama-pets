@@ -1,10 +1,11 @@
-import { PATTERNSPREVIEWMAP } from "@/lib/icons";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
 import { changePatternToPaint, changeCancelColor } from "@/lib/redux/pattern-color-picker-slice";
 import { changePatternColor } from "@/lib/redux/pet-constructor-slice";
-import type { PatternButtonProps } from "@/lib/types";
 
+import type { PatternButtonProps } from "@/lib/types";
+import { PATTERNSPREVIEWMAP } from "@/lib/icons";
 
 const PatternToPaint = ({ data }: PatternButtonProps) => {
   const dispatch = useAppDispatch();

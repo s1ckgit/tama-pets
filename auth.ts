@@ -7,7 +7,7 @@ import { compareSync } from 'bcryptjs';
 import { db } from "@/lib/utils/db";
 import { type Credentials as CredentialsType } from "@/lib/types";
  
-export const { handlers, signIn, signOut, auth } = NextAuth({
+export const { handlers, signIn, signOut, auth, unstable_update } = NextAuth({
   adapter: PrismaAdapter(db),
   providers: [
     Credentials({
@@ -40,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     updateAge: 24 * 60 * 60,
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger, session }) {
       if (user) {
         token.id = user.id;
 
@@ -54,6 +54,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           token.pet = userPet['id'];
         }
       }
+
+      if (trigger === "update" && session?.user?.pet) {
+        token.pet = session.user.pet;
+      }
+      
       return token;
     },
     async session({ session, token }) {

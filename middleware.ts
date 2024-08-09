@@ -13,6 +13,16 @@ const middleware = auth(async (req) => {
     else {
       const session = auth;
 
+      if(pathname.startsWith('/game/create') && (session.user.pet)) {
+        const newUrl = new URL("/game", req.nextUrl.origin);
+        return NextResponse.redirect(newUrl);
+      }
+
+      if(!pathname.startsWith('/game/create') && (!session.user.pet)) {
+        const newUrl = new URL("/game/create", req.nextUrl.origin);
+        return NextResponse.redirect(newUrl);
+      }
+
       if (session.user) {
         const userID = session.user.id;
         const host = req.nextUrl.origin;
@@ -28,9 +38,10 @@ const middleware = auth(async (req) => {
       return NextResponse.next();
     }
   }
+
   else if(pathname.startsWith('/signin') || pathname.startsWith('/signup')) {
     if(auth) {
-      const newUrl = new URL("/game/create", req.nextUrl.origin);
+      const newUrl = new URL("/game", req.nextUrl.origin);
       return NextResponse.redirect(newUrl);
     }
 

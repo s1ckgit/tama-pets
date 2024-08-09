@@ -1,4 +1,4 @@
-import { Pet } from '@prisma/client';
+import type { Pet as PetType } from '@prisma/client';
 import type { ButtonHTMLAttributes } from 'react';
 export interface Credentials {
   email: string;
@@ -7,9 +7,19 @@ export interface Credentials {
 
 type BreedType = 'cat' | 'dog' | 'sheep';
 
-type PetValuesTypes = Pet[keyof Pet];
+type PetStateWOIndex = Omit<PetType, 'createdAt' | 'updatedAt' | 'appearance'> & { 
+  createdAt: string, 
+  updatedAt: string,
+  appearance: object
+};
 
-export type PetWithIndex = { [key: string]: PetValuesTypes } | null;
+export type PetState = PetStateWOIndex & {
+  [key: string]: PetStateWOIndex[keyof PetStateWOIndex]
+};
+
+export type PetWithIndex = PetType & {
+  [key: string]: PetType[keyof PetType]
+};
 
 export interface Stats {
   [key: string]: number
@@ -81,4 +91,25 @@ export interface ChangePartColorPayload {
 
 export interface PatternButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   data: ChangePatternsPayload;
+}
+
+export interface SignUpInputs {
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface SignInInputs extends Omit<SignUpInputs, 'confirmPassword'> {}
+
+export type Inputs<T extends 'signin' | 'signup'> = T extends 'signin'
+  ? SignInInputs
+  : SignUpInputs;
+
+export interface CustomPrismaError {
+  error: CustomPrismaErrorObject
+}
+
+interface CustomPrismaErrorObject {
+  isError: true;
+  code: string;
 }

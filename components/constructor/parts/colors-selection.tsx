@@ -1,8 +1,9 @@
 import { HexColorPicker } from "react-colorful";
+
 import ColorSettings from "./color-settings";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
 import { changePartColor } from "@/lib/redux/pet-constructor-slice";
-
 import { changeColor } from '@/lib/redux/color-picker-slice';
 
 const ColorsSelection = () => {

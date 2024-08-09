@@ -1,18 +1,9 @@
 'use server';
 
-import { Inputs } from "@/components/credentials-form";
 import { signIn, signOut } from "@/auth";
-import { type Credentials } from "@/lib/types";
+import type { Credentials, Inputs } from "@/lib/types";
 import { db } from "@/lib/utils/db";
 import { hashPassword } from "@/lib/utils/hash-password";
-import { redirect } from 'next/navigation';
-
-export async function credentialsFormSubmitFunction ({ email, password }: Inputs<typeof action>, action: 'signup' | 'signin') {
-  if (action === 'signup') {
-    await signUp({ email, password });
-  }
-  await signIn('credentials', { email, password });
-}
 
 export const signUp = async (data: Credentials) => {
   const { email, password } = data;
@@ -28,7 +19,7 @@ export const signUp = async (data: Credentials) => {
 
     console.log('succes', newUser);
   } catch(e) {
-    console.log('чот наебнулось', e);
+    console.log('error', e);
   }
 };
 
@@ -36,9 +27,8 @@ export const logout = async () => {
  try {
     await signOut({ redirect: false });
     console.log('succesfully signout');
-    redirect('/');
  } catch(e) {
-  console.error('error to signOut', e);
+   console.error('error to signOut', e);
  }
 };
 
@@ -50,3 +40,10 @@ export const updateLastActiveStatus = async (id: string) => {
     }
   });
 };
+
+export async function credentialsFormSubmitFunction ({ email, password }: Inputs<typeof action>, action: 'signup' | 'signin') {
+  if (action === 'signup') {
+    await signUp({ email, password });
+  }
+  return await signIn('credentials', { email, password, redirect: false });
+}

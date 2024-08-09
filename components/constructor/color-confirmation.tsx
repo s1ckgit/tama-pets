@@ -1,5 +1,5 @@
 import { CANCEL_ICON, CONFIRM_ICON } from "@/lib/icons";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 
 
 const ColorConfirmation = ({ confirmFunc, cancelFunc }: { confirmFunc: () => void, cancelFunc: () => void }) => {

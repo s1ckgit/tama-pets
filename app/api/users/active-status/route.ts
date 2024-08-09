@@ -6,9 +6,9 @@ export async function POST(req: NextRequest) {
   const id = await req.text();
   try {
     await updateLastActiveStatus(id);
+    return NextResponse.json(null, { status: 200 });
   } catch(e) {
-    console.error('updateLastActiveStatus', e);
+    return NextResponse.json({ error: e }, { status: 500 });
   }
 
-  return NextResponse.json({ status: 200 });
 }

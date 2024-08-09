@@ -131,7 +131,6 @@ export const createSpriteForPetProp = ({ propKey, prop, spritesMap, patternMap, 
 };
 
 export const createPatternSprite = ({ pattern, spritesMap, patternMap, bundle }: CreatePatternSpriteInterface) => {
-  console.log(pattern, 'pattern', pattern.color, 'color');
   createCenteredSprite({
     name: `pattern-${pattern.id}`, 
     texture: bundle[`${pattern.part}-${pattern.partValue}-pattern-${pattern.value}-mask`], 

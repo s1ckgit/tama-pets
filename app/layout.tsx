@@ -1,10 +1,12 @@
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from 'sonner';
+
 import StateProvider from "@/components/state-provider";
 import { cn } from "@/lib/utils/cn";
+import "./globals.css";
 
 const fontSans = Inter({ subsets: ["latin"], variable: '--font-sans' });
 
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -24,6 +26,7 @@ export default function RootLayout({
       <SessionProvider>
         <StateProvider>
             {children}
+            <Toaster />
         </StateProvider>
       </SessionProvider>
       </body>

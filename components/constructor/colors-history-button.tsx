@@ -1,8 +1,8 @@
-import { useAppDispatch } from "@/lib/hooks/store-hooks";
-import { Button } from "./ui/button";
-
 import { useDebounce } from 'use-debounce';
 
+import { Button } from "../ui/button";
+
+import { useAppDispatch } from "@/lib/hooks/store-hooks";
 import { changeColor } from '@/lib/redux/color-picker-slice';
 import { changeColor as changePatternColor } from '@/lib/redux/pattern-color-picker-slice';
 

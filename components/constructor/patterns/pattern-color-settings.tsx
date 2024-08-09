@@ -1,11 +1,13 @@
-import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
-import type { PartType, PatternsPayload } from "@/lib/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import ColorConfirmation from "@/components/constructor/color-confirmation";
+import PatternToPaint from "./pattern-to-paint";
+
+import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
 import { changePatternToPaint, changeColor } from '@/lib/redux/pattern-color-picker-slice';
 import { changePatternColor } from "@/lib/redux/pet-constructor-slice";
-import ColorConfirmation from "./color-confirmation";
-import PatternToPaint from "./pattern-to-paint";
+
+import type { PartType, PatternsPayload } from "@/lib/types";
 import { partsDictionary } from "@/lib/parts-dictionary";
 
 interface ActivePatternsInterface {
@@ -47,6 +49,7 @@ const PatternColorSettings = () => {
           })
         }
       </TabsList>
+      
       {
         patternToPaint && (
           <ColorConfirmation 
@@ -59,6 +62,7 @@ const PatternColorSettings = () => {
           />
         )
       }
+
       {
         !patternToPaint && activePatterns.map((item) => {
           return (

@@ -1,11 +1,11 @@
+import Pattern from "./pattern";
+import StylingSVGByName from "../../styling-svg-by-name";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { BabyCatPatternsEnum } from "@/lib/assets-info";
 import { useAppSelector } from "@/lib/hooks/store-hooks";
-import Pattern from "./pattern";
-import StylingSVGByName from "./styling-svg-by-name";
 
 type BabyCatPatternsEnumKey = keyof typeof BabyCatPatternsEnum;
-
 
 const PatternsSelection = () => {
   const petProps = useAppSelector((state) => state.petConstructor);

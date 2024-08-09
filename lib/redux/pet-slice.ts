@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { fetchPet } from "@/actions/pets";
 
-import { type PetWithIndex } from "@/lib/types";
+import type { PetState } from "@/lib/types";
 
-export const fetchPetState = createAsyncThunk('pet/fetchPet', async (userId: string) => {
-  const pet = await fetchPet(userId);
+export const fetchPetState = createAsyncThunk('pet/fetchPet', async () => {
+  const pet = await fetchPet();
   return pet;
 });
 
@@ -12,10 +12,10 @@ const petSlice = createSlice({
   name: 'pet',
   initialState: {
     pet: null
-  } as { pet: PetWithIndex },
+  } as { pet: PetState | null},
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(fetchPetState.fulfilled, (state, action: PayloadAction<PetWithIndex>) => {
+    builder.addCase(fetchPetState.fulfilled, (state, action: PayloadAction<PetState | null>) => {
       state.pet = action.payload;
     });
   },

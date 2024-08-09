@@ -1,5 +1,5 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import PetPart from "@/components/pet-part";
+import PetPart from "@/components/constructor/parts/pet-part";
 import { BabyCatBrowsEnum, BabyCatEarsEnum, BabyCatHeadEnum, BabyCatTailsEnum, BabyCatWhiskersEnum } from "@/lib/assets-info";
 import { PetConstructorProp, type ChangeVisionPayload } from "@/lib/types";
 import { useAppSelector } from "@/lib/hooks/store-hooks";

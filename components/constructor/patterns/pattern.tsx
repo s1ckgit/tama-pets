@@ -1,8 +1,10 @@
+import { Button } from "../../ui/button";
+
 import { useAppDispatch, useAppSelector } from "@/lib/hooks/store-hooks";
-import type { PatternButtonProps } from "@/lib/types";
 import { changePatternColor, changePatterns } from "@/lib/redux/pet-constructor-slice";
-import { Button } from "./ui/button";
+
 import { PATTERNSPREVIEWMAP } from "@/lib/icons";
+import type { PatternButtonProps } from "@/lib/types";
 
 const Pattern = ({ data, ...props }: PatternButtonProps) => {
   const dispatch = useAppDispatch();

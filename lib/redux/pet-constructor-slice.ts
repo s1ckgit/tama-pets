@@ -88,11 +88,13 @@ const petConstructorSlice = createSlice({
       if(pattern) {
         pattern.color = color;
       }
+    },
+    resetState(state) {
+      Object.assign(state, initialState);
     }
-
   }
 });
 
 export default petConstructorSlice.reducer;
 
-export const { changeBreed, changeVision, changePatternColor, changePartColor, changePatterns } = petConstructorSlice.actions;
+export const { changeBreed, changeVision, changePatternColor, changePartColor, changePatterns, resetState } = petConstructorSlice.actions;

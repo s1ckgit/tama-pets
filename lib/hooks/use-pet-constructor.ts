@@ -15,7 +15,7 @@ export const usePetConstructor = () => {
   }, []);
 
 
-  const drawPet = useCallback(async (middleX: number, middleY: number) => {
+  const drawPet = useCallback(async ({ width, height }: { width: number, height: number }) => {
     
     // Создаём объект со всеми спрайтами
     const spritesMap = {} as SpritesMapType;
@@ -23,7 +23,7 @@ export const usePetConstructor = () => {
     const patternMap = {} as PatternMapType;
 
     // Создаём подложку для основного контейнера и центрируем его
-    createSceneLayout({ width: 480, height: 640, middleX, middleY, container: petContainer });
+    createSceneLayout({ width: 480, height: 640, middleX: width / 2, middleY: height / 2, container: petContainer });
 
     const { body } = petProps;
     const breed = `baby-${body.breed}`;

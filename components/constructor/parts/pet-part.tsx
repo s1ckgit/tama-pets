@@ -1,12 +1,12 @@
 import { type ButtonHTMLAttributes } from "react";
 
+import { Button } from "../../ui/button";
+
 import { useAppDispatch } from "@/lib/hooks/store-hooks";
-import { type ChangeVisionPayload } from "@/lib/types";
 import { changeVision } from "@/lib/redux/pet-constructor-slice";
-import { Button } from "./ui/button";
 
+import { type ChangeVisionPayload } from "@/lib/types";
 import { PREVIEWSMAP } from "@/lib/icons";
-
 
 interface PetPartProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   data: ChangeVisionPayload;

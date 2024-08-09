@@ -1,10 +1,12 @@
 'use server';
 
-import type { Stats, PetWithIndex } from "@/lib/types";
+import { auth, unstable_update } from "@/auth";
 import { db } from "@/lib/utils/db";
+import { prismaErrorMiddleware } from "@/lib/utils/prisma-error-middleware";
+import { deserializeReviver, serializeReplacer } from "@/lib/utils/serializing-state";
+import type { PetConstructorState, PetState, PetWithIndex, Stats } from "@/lib/types";
 
-export const createPet = async ({ appearance, name, userId }: { appearance: string, name: string; userId: string }) => {
-  try {
+export const createPet = prismaErrorMiddleware(async function({ appearance, name, userId }: { appearance: string, name: string; userId: string }) {
     const newPet = await db.pet.create({
       data: {
         appearance,
@@ -12,24 +14,29 @@ export const createPet = async ({ appearance, name, userId }: { appearance: stri
         userId
       }
     });
-    console.log(newPet);
-  }
-  catch(e) {
-    console.log(e);
-  }
-};
+    return newPet;
+});
 
-export const fetchPet = async (userId: string) => {
+export const fetchPet = async () => {
+  const session = await auth();
+  const userId = session?.user.id;
+
   const pet = await db.pet.findUnique({
     where: { userId }
   });
-  const createdAt = pet?.createdAt.toISOString();
-  const updatedAt = pet?.updatedAt.toISOString();
-  return {
-    ...pet,
-    createdAt,
-    updatedAt
-  } as PetWithIndex;
+
+  if(pet) {
+    const deserializedAppearance: object = JSON.parse(pet.appearance as string, deserializeReviver);
+    const createdAt = pet?.createdAt.toISOString();
+    const updatedAt = pet?.updatedAt.toISOString();
+    return {
+      ...pet,
+      appearance: deserializedAppearance,
+      createdAt,
+      updatedAt
+    } as PetState;
+  }
+  return null;
 };
 
 export const updatePet = async (petData: Stats, userId: string) => {
@@ -86,7 +93,7 @@ export const updateActivePetsStatusByTime = async () => {
 };
 
 export const changePetsStats = async (id: string, stats: Stats) => {
-  const pet: PetWithIndex = await db.pet.findFirst({
+  const pet: PetWithIndex | null = await db.pet.findFirst({
     where: { id }
   });
 
@@ -103,4 +110,26 @@ export const changePetsStats = async (id: string, stats: Stats) => {
     data: changedStats
   });
 
+};
+
+export const savePetToDB = async (constructorState: PetConstructorState, name: string) => {
+  const session = await auth();
+  const userId = session?.user.id;
+  if(userId) {
+  const appearanceData = JSON.stringify(constructorState, serializeReplacer);
+  const pet = await createPet({ 
+    appearance: appearanceData,
+    userId,
+    name
+  });
+
+  await unstable_update({
+    user: {
+      ...session.user,
+      pet: pet.id
+    }
+  });
+
+  return pet;
+  }
 };
