@@ -23,38 +23,33 @@ const PatternsSelection = () => {
   const bodyPatterns = BabyCatPatternsEnum['body-1' as BabyCatPatternsEnumKey];
 
   return (
-    <Tabs>
-      <TabsList>
-        {earsPatterns && <TabsTrigger value='ears'>Уши</TabsTrigger>}
-        {tailPatterns && <TabsTrigger value='tails'>Хвосты</TabsTrigger>}
-        {bodyPatterns && <TabsTrigger value='body'>Тело</TabsTrigger>}
-      </TabsList>
-      {earsPatterns && (
-        <TabsContent value='ears'>
-          <div className="flex gap-2 flex-wrap">
-            <StylingSVGByName color={color} />
+    <>
+      <StylingSVGByName color={color} />
+      <Tabs defaultValue={(earsPatterns && 'ears') || (tailPatterns && 'tails') || (bodyPatterns && 'body')}>
+        <TabsList>
+          {earsPatterns && <TabsTrigger value='ears'>Уши</TabsTrigger>}
+          {tailPatterns && <TabsTrigger value='tails'>Хвосты</TabsTrigger>}
+          {bodyPatterns && <TabsTrigger value='body'>Тело</TabsTrigger>}
+        </TabsList>
+
+        {earsPatterns && (
+          <TabsContent className="grid gap-2 grid-cols-3" value='ears'>
             {earsPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
-          </div>
-        </TabsContent>
-      )}
-      {tailPatterns && (
-        <TabsContent value='tails'>
-          <div className="flex gap-2 flex-wrap">
-            <StylingSVGByName color={color} />
+          </TabsContent>
+        )}
+        {tailPatterns && (
+          <TabsContent className="grid gap-2 grid-cols-3" value='tails'>
             {tailPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
-          </div>
-        </TabsContent>
-      )}
-      {bodyPatterns && (
-        <TabsContent value='body'>
-          <div className="flex gap-2 flex-wrap">
-            <StylingSVGByName color={color} />
+          </TabsContent>
+        )}
+        {bodyPatterns && (
+          <TabsContent className="grid gap-2 grid-cols-3" value='body'>
             {bodyPatterns.map((item) => <Pattern data={{ pattern: item }} key={item.id} />)}
-          </div>
-        </TabsContent>
-      )}
-      
-    </Tabs>
+          </TabsContent>
+        )}
+      </Tabs>
+    </>
+
   );
 };
 export default PatternsSelection;

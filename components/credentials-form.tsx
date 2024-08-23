@@ -44,7 +44,7 @@ export default function CredentialsForm({ type }: {type: 'signin' | 'signup'}) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="min-w-[400px] p-6 pb-8 rounded-2xl bg-[rgba(255,255,255,0.6)] flex flex-col gap-4"
+      className="sm:min-w-[400px] p-6 pb-8 rounded-2xl bg-[rgba(255,255,255,0.6)] flex flex-col gap-4"
     >
       <fieldset className="flex flex-col">
         <label className="mb-2" htmlFor="email">Email</label>

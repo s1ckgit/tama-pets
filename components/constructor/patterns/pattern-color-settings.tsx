@@ -35,7 +35,7 @@ const PatternColorSettings = () => {
   }
 
   return activePatterns.length > 0 ? (
-    <Tabs className="w-full">
+    <Tabs defaultValue={activePatterns.length > 0 ? activePatterns[0].part : '' } className="w-full">
       <TabsList className="flex">
         {
           activePatterns.map((item) => {
@@ -66,7 +66,7 @@ const PatternColorSettings = () => {
       {
         !patternToPaint && activePatterns.map((item) => {
           return (
-            <TabsContent className="flex flex-wrap gap-2" key={item.part} value={`${item.part}`}>
+            <TabsContent className="grid grid-cols-3 auto-rows-[75px] gap-2 overflow-y-auto h-[166px]" key={item.part} value={`${item.part}`}>
               {
                 Array.from(item.patterns.entries()).map(([id, pattern]) => {
                   return (

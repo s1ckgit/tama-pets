@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { signOut } from "next-auth/react";
 
-import { logout } from "@/actions/user";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/lib/hooks/store-hooks";
 import { resetState } from "@/lib/redux/pet-constructor-slice";
@@ -15,7 +15,7 @@ const Game = () => {
   const router = useRouter();
 
   const onExit = async () => {
-    await logout();
+    await signOut({ redirect: false });
     router.replace('/');
   };
 
