@@ -20,7 +20,8 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'register-background': "url('/backgrounds/register-background.jpg')"
+        'register-background': "url('/backgrounds/register-background.jpg')",
+        "auth-background": "url('/backgrounds/auth-background.png')",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

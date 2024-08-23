@@ -1,6 +1,6 @@
 'use server';
 
-import { signIn, signOut } from "@/auth";
+import { signIn } from "@/auth";
 import type { Credentials, Inputs } from "@/lib/types";
 import { db } from "@/lib/utils/db";
 import { hashPassword } from "@/lib/utils/hash-password";
@@ -21,15 +21,6 @@ export const signUp = async (data: Credentials) => {
   } catch(e) {
     console.log('error', e);
   }
-};
-
-export const logout = async () => {
- try {
-    await signOut({ redirect: false });
-    console.log('succesfully signout');
- } catch(e) {
-   console.error('error to signOut', e);
- }
 };
 
 export const updateLastActiveStatus = async (id: string) => {

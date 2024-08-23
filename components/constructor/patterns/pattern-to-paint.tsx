@@ -21,7 +21,7 @@ const PatternToPaint = ({ data }: PatternButtonProps) => {
 
   return (
     <Button
-      className="h-full"
+      className="h-full p-2"
       variant='outline'
       onClick={() => {
         dispatch(changePatternToPaint({ part, patternID: id }));
@@ -29,7 +29,7 @@ const PatternToPaint = ({ data }: PatternButtonProps) => {
         dispatch(changePatternColor({ part, patternID: id, color }));
       }}
     >
-      <PreviewIcon className="w-12 h-12"/>
+      <PreviewIcon className="w-16 h-16"/>
     </Button>
   );
 };

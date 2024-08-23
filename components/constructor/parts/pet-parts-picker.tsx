@@ -16,7 +16,7 @@ const PetPartsPicker = () => {
   }
 
   return (
-    <Tabs className="w-auto">
+    <Tabs defaultValue="brows" className="w-auto">
       <TabsList className="flex">
         <TabsTrigger className="basis-full" value="brows">Брови</TabsTrigger>
         <TabsTrigger className="basis-full" value="head">Голова</TabsTrigger>
