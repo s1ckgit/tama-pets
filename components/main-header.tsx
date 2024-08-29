@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,11 +10,11 @@ const MainHeader = async () => {
   const session = await auth();
 
   return (
-    <header className={cn('grid grid-cols-[135px,auto] py-12 px-6 items-center bg-transparent absolute top-0 z-50 w-full h-[150px]')}>
+    <header className={'grid grid-cols-[135px,auto] py-12 px-6 items-center bg-transparent absolute top-0 z-50 w-full h-[150px] 2xl:px-16'}>
         <Link href='/'> 
           <Image width={135} height={55} alt='logo' src={LOGO}></Image>
         </Link>
-        <nav className='flex w-full justify-evenly align-middle text-center'>
+        <nav className='flex w-full justify-between px-8 align-middle text-center 2xl:justify-evenly'>
 
           <Link href='/'>Главная</Link>
           <Link className="line-through" href=''>Об игре</Link>
