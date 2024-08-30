@@ -1,9 +1,9 @@
 'use client';
 
 import { cn } from '@/lib/utils/cn';
-import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const TypewriterStream = ({ url, onEnd }: { url: string; onEnd: Dispatch<SetStateAction<boolean>> }) => {
+const TypewriterStream = ({ url, onEnd }: { url: string; onEnd: () => void; }) => {
   const [text, setText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +23,7 @@ const TypewriterStream = ({ url, onEnd }: { url: string; onEnd: Dispatch<SetStat
     };
 
     eventSource.addEventListener('end', () => {
-      onEnd(true);
+      onEnd();
     });
 
     return () => {
