@@ -1,16 +1,18 @@
+'use client';
+
 import Image from "next/image";
 import Link from "next/link";
+import type { Session } from "next-auth";
+import { motion } from "framer-motion";
 
 import LOGO from '@/public/logos/header-logo.svg?url';
 
 import LogoutButton from "./logout-button";
-import { auth } from "@/auth";
 
-const MainHeader = async () => {
-  const session = await auth();
-
+const MainHeader = ({ session }: { session: Session | null } ) => {
+  
   return (
-    <header className={'grid grid-cols-[135px,auto] py-12 px-6 items-center bg-transparent absolute top-0 z-50 w-full h-[150px] 2xl:px-16'}>
+    <motion.header initial={{ y: -1000 }} animate={{ y: 0 }} transition={{ duration: 1 }} className={'grid grid-cols-[135px,auto] py-12 px-6 items-center bg-transparent absolute top-0 z-50 w-full h-[150px] 2xl:px-16'}>
         <Link href='/'> 
           <Image width={135} height={55} alt='logo' src={LOGO}></Image>
         </Link>
@@ -31,7 +33,7 @@ const MainHeader = async () => {
           }
           
         </nav>
-      </header>
+      </motion.header>
   );
 };
 export default MainHeader;
