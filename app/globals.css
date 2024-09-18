@@ -1,6 +1,6 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -75,20 +75,6 @@
   }
 }
 
-@layer utilities {
-  .pseudo-dialog::after {
-    content: '';
-    position: absolute;
-    top: 250px;
-    left: -50px;
-    width: 0;
-    height: 0;
-    border-top: 100px solid transparent;
-    border-bottom: 100px solid transparent;
-    border-right: 100px solid #D9D9D9;
-  }
-}
-
 @layer components {
   .tama-container {
     border-radius: 12px;
@@ -99,5 +85,45 @@
     0px 0px 5px 3px rgb(158, 158, 158),
     inset 0px 0px 10px 10px rgb(103, 102, 102);
     padding: 20px;
+  }
+
+  .dialog {
+    @apply relative leading-8 mt-5 p-10 bg-[#ffebb2] rounded-xl z-10
+  }
+
+  .dialog::after {
+    content: '';
+    position: absolute;
+    left: -50px;
+    top: 100px;
+    transform: translateY(-50%) rotate(45deg);
+    width: 0; 
+    height: 0; 
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 75px solid transparent;
+    border-top: 75px solid #ffebb2;
+    z-index: -1;
+  }
+
+  @media screen and (max-width: 768px) {
+    .dialog::after {
+      display: none;
+    }
+  }
+}
+
+@layer utilities {
+  .animate-typing-dots::after {
+    content: '';
+    animation: typing-dots 1.5s steps(1, end) infinite;
+  }
+
+  
+  @keyframes typing-dots {
+    0% { content: '.'; }
+    33% { content: '..'; }
+    66% { content: '...'; }
+    100% { content: '.'; }
   }
 }
